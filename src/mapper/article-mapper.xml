@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.ArticleMapper">
+	<resultMap type="Article" id="resultArticle">
+		<result column="ARTICLE_NO" property="articleNo"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="TITLE" property="title"/>
+		<result column="PRICE" property="price"/>
+		<result column="READ_COUNT" property="readCount"/>
+		<result column="POSTING_DATE" property="postingDate"/>
+		<result column="PREMIUM" property="premium"/>
+		<result column="PHOTO" property="photo"/>
+		<result column="CATEGORY_ID" property="categoryId"/>
+		<result column="CONTENT" property="content"/>
+		<result column="SOLDOUT" property="soldout"/>
+	</resultMap>
+	
+	<insert id="insertArticle" parameterType="Article" useGeneratedKeys="true" keyColumn="ARTICLE_NO" keyProperty="articleNo">
+		INSERT INTO ARTICLE(USER_ID, TITLE, PRICE, READ_COUNT, POSTING_DATE, PREMIUM, PHOTO, CATEGORY_ID, CONTENT, SOLDOUT) VALUES(#{userId}, #{title}, #{price}, #{readCount}, #{postingDate}, #{premium}, #{photo}, #{categoryId}, #{content}, #{soldout})
+	</insert>
+	
+	<update id="updateArticle" parameterType="Article">
+		UPDATE ARTICLE SET TITLE=#{title}, PRICE=#{price}, PREMIUM=#{premium}, PHOTO=#{photo}, CATEGORY_ID=#{categoryId}, CONTENT=#{content}, SOLDOUT=#{soldout} WHERE ARTICLE_NO=#{articleNo}
+	</update>
+	
+	<delete id="deleteArticle" parameterType="Integer">
+		DELETE FROM ARTICLE WHERE ARTICLE_NO=#{articleNo}
+	</delete>
+	
+	<select id="selectArticle" parameterType="Integer" resultMap="resultArticle">
+		SELECT * FROM ARTICLE WHERE ARTICLE_NO=#{articleNo}
+	</select>
+	
+	<select id="selectArticleListAll" parameterType="Map" resultMap="resultArticle">
+		SELECT * FROM ARTICLE WHERE TITLE LIKE #{search} ORDER BY ARTICLE_NO DESC LIMIT #{startIndex}, #{numOfIndex}
+	</select>
+	
+	<select id="selectArticleListCategory" parameterType="Map" resultMap="resultArticle">
+		SELECT * FROM ARTICLE WHERE CATEGORY_ID=#{categoryId} AND TITLE LIKE #{search} ORDER BY ARTICLE_NO DESC LIMIT #{startIndex}, #{numOfIndex}
+	</select>
+	
+	<select id="selectArticleListHot" parameterType="Map" resultMap="resultArticle">
+		SELECT * FROM ARTICLE WHERE READ_COUNT>=10 AND TITLE LIKE #{search} ORDER BY ARTICLE_NO DESC LIMIT #{startIndex}, #{numOfIndex}
+	</select>
+	
+	<select id="selectArticleListPremium" parameterType="Map" resultMap="resultArticle">
+		SELECT * FROM ARTICLE WHERE PREMIUM=1 AND TITLE LIKE #{search} ORDER BY ARTICLE_NO DESC LIMIT #{startIndex}, #{numOfIndex}
+	</select>
+	
+	<select id="selectArticleCountAll" parameterType="Map" resultType="Integer">
+		SELECT COUNT(*) FROM ARTICLE WHERE TITLE LIKE #{search}
+	</select>
+	
+	<select id="selectArticleCountCategory" parameterType="Map" resultType="Integer">
+		SELECT COUNT(*) FROM ARTICLE WHERE CATEGORY_ID=#{categoryId} AND TITLE LIKE #{search}
+	</select>
+	
+	<select id="selectArticleCountHot" parameterType="Map" resultType="Integer">
+		SELECT COUNT(*) FROM ARTICLE WHERE READ_COUNT>=10 AND TITLE LIKE #{search}
+	</select>
+	
+	<select id="selectArticleCountPremium" parameterType="Map" resultType="Integer">
+		SELECT COUNT(*) FROM ARTICLE WHERE PREMIUM=1 AND TITLE LIKE #{search}
+	</select>
+</mapper>
