@@ -19,4 +19,7 @@ public interface ArticleMapper
 	public int selectArticleCountCategory(Map<String, Object> map);
 	public int selectArticleCountHot(Map<String, Object> map);
 	public int selectArticleCountPremium(Map<String, Object> map);
+	public int articleCountAll();
+	public int articleConuntHot();
+	public int articleCountPremium();
 }

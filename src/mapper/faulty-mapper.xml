@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.FaultyMapper">
+	<resultMap type="Faulty" id="resultFaulty">
+		<result column="FAULTY_NO" property="faultyNo"/>
+		<result column="ARTICLE_NO" property="articleNo"/>
+		<result column="PHOTO" property="photo"/>
+		<result column="ACCUSER_ID" property="accId"/>
+		<result column="ACCUSER_NAME" property="accName"/>
+		<result column="ACCUSER_PHONE" property="accPhone"/>
+		<result column="ACCUSER_EMAIL" property="accEmail"/>
+		<result column="ACCUSATION_DATE" property="accDate"/>
+		<result column="ACCUSATION_TITLE" property="accTitle"/>
+		<result column="ACCUSATION_CONTENT" property="accContent"/>
+		<result column="FAULTY_CHECK" property="faultyCheck"/>
+	</resultMap>
+	
+	<!-- 입력 -->
+	<insert id="writeFaulty" parameterType="Faulty" useGeneratedKeys="true" keyColumn="FAULTY_NO" keyProperty="faultyNo">
+		INSERT INTO FAULTY(ARTICLE_NO,PHOTO,ACCUSER_ID,ACCUSER_NAME,ACCUSER_PHONE,ACCUSER_EMAIL,ACCUSATION_DATE,ACCUSATION_TITLE,ACCUSATION_CONTENT,FAULTY_CHECK)
+			VALUES(#{articleNo},#{photo},#{accId},#{accName},#{accPhone},#{accEmail},#{accDate},#{accTitle},#{accContent},#{faultyCheck})
+	</insert>
+	<!-- 한 상품 아티클 내의 불량신고 검색 -->
+	<select id="selectArticleFaulty" parameterType="Integer" resultMap="resultFaulty">
+		SELECT * FROM FAULTY WHERE ARTICLE_NO=#{articleNo} ORDER BY FAULTY_NO
+	</select>
+	
+	<!-- 불량신고 하나의 내용을 불러오기 -->
+	<select id="selectFaultyview" parameterType="Integer" resultMap="resultFaulty">
+		SELECT * FROM FAULTY WHERE FAULTY_NO=#{faultyNo}
+	</select> 
+	
+	<!-- 한 아티클 내의 불량신고 숫자 -->
+	<select id="selectArticleFaultyNumber" >
+		SELECT COUNT(*) FROM FAULTY WHERE ARTICLE_NO=#{articleNo} 
+	</select>
+	
+	<!-- 불량신고 내용 수정 신고자가 아니면 수정불가하도록 만듦-->
+	<update id="reWriteFaulty" parameterType="Faulty">
+		UPDATE FAULTY SET PHOTO=#{photo},ACCUSATION_TITLE=#{accTitle},ACCUSATION_CONTENT=#{accContent} where FAULTY_NO=#{faultyNo}
+	</update>
+	
+	<!-- 불량신고 취소 역시 신고자 아니면 수정불가-->
+	<delete id="cancelFaulty" parameterType="Integer">
+		DELETE FROM FAULTY WHERE FAULTY_NO=#{faultyNo}
+	</delete>
+	
+</mapper>

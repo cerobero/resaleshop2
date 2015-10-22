@@ -62,4 +62,18 @@
 	<select id="selectArticleCountPremium" parameterType="Map" resultType="Integer">
 		SELECT COUNT(*) FROM ARTICLE WHERE PREMIUM=1 AND TITLE LIKE #{search}
 	</select>
+	
+	<select id="articleCountAll" resultType="Integer">
+		SELECT COUNT(*) FROM ARTICLE 
+	</select>
+	
+	<select id="articleCountHot" resultType="Integer">
+		SELECT COUNT(*) FROM ARTICLE WHERE READ_COUNT>=10 
+	</select>
+	
+	<select id="articleCountPremium" resultType="Integer">
+		SELECT COUNT(*) FROM ARTICLE WHERE PREMIUM=1 
+	</select>
+	
+	
 </mapper>
