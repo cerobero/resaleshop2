@@ -2,7 +2,7 @@ package vo;
 
 import java.util.Date;
 
-public class faulty {
+public class Faulty {
 	private int faultyNo;// faulty_no
 	private int articleNo;// article_no
 	private String photo; // photo
@@ -16,11 +16,11 @@ public class faulty {
 	private int faultyCheck;// faulty_check
 	////////////////////////////////////////////////
 
-	public faulty() {
+	public Faulty() {
 
 	}
 
-	public faulty(int faultyNo, int articleNo, String photo, String accId, String accName, String accPhone,
+	public Faulty(int faultyNo, int articleNo, String photo, String accId, String accName, String accPhone,
 			String accEmail, Date accDate, String accTitle, String accContent, int faultyCheck) {
 		this.faultyNo = faultyNo;
 		this.articleNo = articleNo;
