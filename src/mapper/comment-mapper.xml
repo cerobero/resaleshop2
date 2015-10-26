@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.CommentMapper">
+	<resultMap type="COMMENT" id="resultComment">
+		<result column="COMMENT_NO" property="commentNo"/>
+		<result column="ARTICLE_NO" property="articleNo"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="COMMENT_DATE" property="commentDate"/>
+		<result column="COMMENT_CONTENT" property="commentContent"/>
+	</resultMap>
+	
+	<insert id="writeComment" parameterType="Comment" useGeneratedKeys="true" keyColumn="ARTICLE_NO" keyProperty="articleNo"> 
+		INSERT INTO COMMENT(ARTICLE_NO,USER_ID,COMMENT_DATE,COMMENT_CONTENT) VALUES(#{articleNo},#{userId},#{commentDate},#{commentContent})
+	</insert>
+	
+	<select id="viewComments" parameterType="Integer" resultMap="resultComment">
+		SELECT * FROM COMMENT WHERE ARTICLE_NO=#{articleNo}
+	</select>
+	
+	<update id="reWriteComment" parameterType="Map">
+		UPDATE COMMENT SET COMMENT_CONTENT=#{commentContent} WHERE ARTICLE_NO=#{articleNo}
+	</update>
+	
+	<delete id="deleteComment" parameterType="Integer">
+		DELETE FROM COMMENT WHERE COMMENT_NO=#{commentNo}
+	</delete>
+	
+	<select id="commentCount" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*) FROM COMMENT WHERE ARTICLE_NO=#{articleNo} 
+	</select>
+</mapper>
