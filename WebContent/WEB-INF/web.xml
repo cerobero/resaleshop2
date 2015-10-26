@@ -15,6 +15,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			/WEB-INF/resaleshop-dao.xml
+			/WEB-INF/resaleshop-service.xml
 		</param-value>
 	</context-param>
 

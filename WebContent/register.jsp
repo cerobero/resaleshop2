@@ -88,6 +88,15 @@
 		        <p class="help-block">이메일을 입력해주세요.</p>
 		      </div>
 		    </div>
+
+		    <div class="control-group">
+		      <!-- Username -->
+		      <label class="control-label" for="userAge">나이</label>
+		      <div class="controls">
+		        <input type="number" id="userAge" name="userAge" placeholder="" class="input-xlarge" min="15" max="60" title="나이를 입력해주세요." required>
+		        <p class="help-block">나이를 입력해주세요.</p>
+		      </div>
+		    </div>
 		    
 		    <br>
 		 

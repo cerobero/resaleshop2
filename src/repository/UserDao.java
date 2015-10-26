@@ -20,7 +20,7 @@ public class UserDao
 		mapper = sessionTemplate.getMapper(UserMapper.class);
 	}
 	
-	public int insert(User user)
+	public int insert(User user) throws Exception
 	{
 		return mapper.insertUser(user);
 	}

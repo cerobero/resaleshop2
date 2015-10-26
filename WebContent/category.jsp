@@ -87,11 +87,11 @@
 		</div>
 		<!-- /.row -->
 
-		<c:if test="${requestScope.articlePage.pageArticleCount > 0 }">
+		<c:if test="${articlePage.pageArticleCount > 0 }">
 			<div class="row">
 				<c:forEach var="article"
-					items="${requestScope.articlePage.articleList }" begin="0"
-					end="${requestScope.articlePage.pageArticleCount > 4 ? 4 - 1 : requestScope.articlePage.pageArticleCount }">
+					items="${articlePage.articleList }" begin="0"
+					end="${articlePage.pageArticleCount > 4 ? 4 - 1 : articlePage.pageArticleCount }">
 					<div class="col-md-3 portfolio-item">
 						<a href="#"> <img class="img-responsive"
 							src="${article.photo }" alt="">
@@ -105,11 +105,11 @@
 				</c:forEach>
 			</div>
 		</c:if>
-		<c:if test="${requestScope.articlePage.pageArticleCount > 4 }">
+		<c:if test="${articlePage.pageArticleCount > 4 }">
 			<div class="row">
 				<c:forEach var="article"
-					items="${requestScope.articlePage.articleList }" begin="4"
-					end="${requestScope.articlePage.pageArticleCount - 1 }">
+					items="${articlePage.articleList }" begin="4"
+					end="${articlePage.pageArticleCount - 1 }">
 					<div class="col-md-3 portfolio-item">
 						<a href="#"> <img class="img-responsive"
 							src="${article.photo }" alt="">
@@ -125,22 +125,22 @@
 		</c:if>
 
 		<!-- Pagination -->
-		<c:if test="${requestScope.articlePage.articleCount > 0 }">
+		<c:if test="${articlePage.articleCount > 0 }">
 			<div class="row text-center">
 				<div class="col-lg-12">
 					<ul class="pagination">
 						<c:if
-							test="${requestScope.articlePage.currentPage != requestScope.articlePage.startPage }">
+							test="${articlePage.currentPage != articlePage.startPage }">
 							<li><a
-								href="list?view=${param.view }&categoryId=${param.categoryId }&page=${requestScope.articlePage.currentPage - 1 }&search=${param.search }">&laquo;</a>
+								href="list?view=${param.view }&categoryId=${param.categoryId }&page=${articlePage.currentPage - 1 }&search=${param.search }">&laquo;</a>
 							</li>
 						</c:if>
 						<c:forEach var="num"
-							begin="${requestScope.articlePage.startPage }"
-							end="${requestScope.articlePage.endPage }" varStatus="status">
+							begin="${articlePage.startPage }"
+							end="${articlePage.endPage }" varStatus="status">
 							<c:choose>
-								<c:when test="${requestScope.articlePage.currentPage == num }">
-									<li><a class="active"
+								<c:when test="${articlePage.currentPage == num }">
+									<li><a class="btn-primary active disabled"
 										href="list?view=${param.view }&categoryId=${param.categoryId }&page=${num }&search=${param.search }">${num }</a>
 									</li>
 								</c:when>
@@ -152,14 +152,15 @@
 							</c:choose>
 						</c:forEach>
 						<c:if
-							test="${requestScope.articlePage.currentPage != requestScope.articlePage.endPage }">
+							test="${articlePage.currentPage != articlePage.endPage }">
 							<li><a
-								href="list?view=${param.view }&categoryId=${param.categoryId }&page=${requestScope.articlePage.currentPage + 1 }&search=${param.search }">&raquo;</a>
+								href="list?view=${param.view }&categoryId=${param.categoryId }&page=${articlePage.currentPage + 1 }&search=${param.search }">&raquo;</a>
 							</li>
 						</c:if>
 					</ul>
 				</div>
 			</div>
+		</c:if>
 
 			<div class="row">
 				<form class="input-form" role="search" action="list" method="get">
@@ -167,7 +168,7 @@
 						<div class="input-group">
 							<input name="search" type="text" class="form-control"
 								style="margin-right: 35px, border: 1px solid black;"
-								placeholder="검색"> <input name="view" type="hidden"
+								placeholder="글제목 검색"> <input name="view" type="hidden"
 								value="${param.view }"> <input name="categoryId"
 								type="hidden" value="${param.categoryId }"> <span
 								class="input-group-btn">
@@ -184,7 +185,6 @@
 			<!-- /.row -->
 
 			<hr>
-		</c:if>
 
 		<!-- Footer -->
 		<footer>
