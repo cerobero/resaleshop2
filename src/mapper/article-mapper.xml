@@ -74,6 +74,16 @@
 	<select id="articleCountPremium" resultType="Integer">
 		SELECT COUNT(*) FROM ARTICLE WHERE PREMIUM=1 
 	</select>
+	<select id="selectMainArticleListAll" parameterType="Map" resultMap="resultArticle">
+		SELECT * FROM ARTICLE ORDER BY ARTICLE_NO DESC LIMIT #{startIndex}, #{numOfIndex}
+	</select>
 	
+	<select id="selectMainArticleListHot" parameterType="Map" resultMap="resultArticle">
+		SELECT * FROM ARTICLE WHERE READ_COUNT>=10 ORDER BY ARTICLE_NO DESC LIMIT #{startIndex}, #{numOfIndex}
+	</select>
+	
+	<select id="selectMainArticleListPremium" parameterType="Map" resultMap="resultArticle">
+		SELECT * FROM ARTICLE WHERE PREMIUM=1 AND ORDER BY ARTICLE_NO DESC LIMIT #{startIndex}, #{numOfIndex}
+	</select>
 	
 </mapper>

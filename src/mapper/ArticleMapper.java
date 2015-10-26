@@ -22,4 +22,7 @@ public interface ArticleMapper
 	public int articleCountAll();
 	public int articleConuntHot();
 	public int articleCountPremium();
+	public List<Article> selectMainArticleListAll(Map<String, Integer> map);
+	public List<Article> selectMainArticleListHot(Map<String, Integer> map);
+	public List<Article> selectMainArticleListPremium(Map<String, Integer> map);
 }

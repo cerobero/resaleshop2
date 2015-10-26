@@ -115,4 +115,37 @@ public class ArticleDao
 		
 		return mapper.selectArticleCountPremium(map);
 	}
+	
+	public List<Article> selectAllMainArticle(int startIndex, int numOfIndex){
+		Map<String,Integer> map=new HashMap<>();
+		map.put("startIndex", startIndex);
+		map.put("numOfIndex", numOfIndex);
+		return mapper.selectMainArticleListAll(map);
+	}
+	
+	public List<Article> selectHotMainArticle(int startIndex, int numOfIndex){
+		Map<String,Integer> map=new HashMap<>();
+		map.put("startIndex", startIndex);
+		map.put("numOfIndex", numOfIndex);
+		return mapper.selectMainArticleListHot(map);
+	}
+	
+	public List<Article> selectPremiumMainArticle(int startIndex, int numOfIndex){
+		Map<String,Integer> map=new HashMap<>();
+		map.put("startIndex", startIndex);
+		map.put("numOfIndex", numOfIndex);
+		return mapper.selectMainArticleListPremium(map);
+	}
+	
+	public int MainAllArticleCount(){
+		return mapper.articleCountAll();
+	}
+	
+	public int MainHotArticleCount(){
+		return mapper.articleConuntHot();
+	}
+	
+	public int MainPremiumArticleCount(){
+		return mapper.articleCountPremium();
+	}
 }
