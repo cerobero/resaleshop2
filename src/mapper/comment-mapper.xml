@@ -28,4 +28,8 @@
 	<select id="commentCount" parameterType="Integer" resultType="Integer">
 		SELECT COUNT(*) FROM COMMENT WHERE ARTICLE_NO=#{articleNo} 
 	</select>
+	
+	<select id="readComment" parameterType="Integer" resultMap="resultComment">
+		SELECT * FROM COMMENT WHERE COMMENT_NO=#{commentNo}
+	</select>
 </mapper>

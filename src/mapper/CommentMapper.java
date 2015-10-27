@@ -11,4 +11,5 @@ public interface CommentMapper {
 	public int reWriteComment(Map<String, Object> map);
 	public int deleteComment(int commentNo);
 	public int commentCount(int articleNo);	
+	public Comment readComment(int commentNo);
 }
