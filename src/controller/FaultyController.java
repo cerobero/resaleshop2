@@ -63,8 +63,8 @@ public class FaultyController {
 	}
 
 	@RequestMapping("f_view.do")
-	public ModelAndView articleFaultyListView(int articleNo) {
-		List<Faulty> articleFaulty = service.listFaulty(articleNo);
+	public ModelAndView articleFaultyView(int faultyNo) {
+		Faulty articleFaulty = service.readFaulty(faultyNo);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("articleFaulty", articleFaulty);
 		mv.setViewName("f_view");
