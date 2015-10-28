@@ -30,10 +30,10 @@ public class CommentController {
 		return mv;
 	}
 
-	@RequestMapping("/c_write_form.do")
+/*	@RequestMapping("/c_write_form.do")
 	public String CommentWriteForm() {
 		return "c_write_form";
-	}
+	}*/
 
 	@RequestMapping(value = "/c_write.do", method = RequestMethod.POST)
 	public String CommentWrite(Comment comment) {
