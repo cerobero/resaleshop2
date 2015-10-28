@@ -88,9 +88,9 @@
     </c:choose>
 			<td align="center">
 			<div class="btn-group-vertical">
-				<button type="button" class="btn btn-default" onClick="soldout?articleNo=${article.articleNo}'"><span class="glyphicon glyphicon-ok"></span> 완료</button>
-				<button type="button" class="btn btn-default" onClick="updateForm?articleNo=${article.articleNo}'"><span class="glyphicon glyphicon-pencil"></span> 수정</button>
-				<button type="button" class="btn btn-default" onClick="delete?articleNo=${article.articleNo}'"><span class="glyphicon glyphicon-trash"></span> 삭제</button>
+				<button type="button" class="btn btn-default" onClick="location.href='soldout?articleNo=${article.articleNo}'"><span class="glyphicon glyphicon-ok"></span> 완료</button>
+				<button type="button" class="btn btn-default" onClick="location.href='updateForm?articleNo=${article.articleNo}'"><span class="glyphicon glyphicon-pencil"></span> 수정</button>
+				<button type="button" class="btn btn-default" onClick="location.href='delete?articleNo=${article.articleNo}'"><span class="glyphicon glyphicon-trash"></span> 삭제</button>
 			</div>
 			</td>
   		</tr>

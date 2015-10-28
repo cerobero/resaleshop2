@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 import repository.LogMyDao;
 import service.LogMyService;
 import vo.Article;
-import vo.GoodsVo;
 import vo.User;
 
 @Controller
@@ -43,9 +42,9 @@ public class LogMyController {
 			session.setAttribute("age", user.getUserAge());
 			mv = new ModelAndView("index");
 		} else if (ck == 0) {
-			mv = new ModelAndView("err", "errMsg", "ºñ¹Ð¹øÈ£ ÀÔ·Â¿À·ù");
+			mv = new ModelAndView("err", "errMsg", "ï¿½ï¿½Ð¹ï¿½È£ ï¿½Ô·Â¿ï¿½ï¿½ï¿½");
 		} else {
-			mv = new ModelAndView("err", "errMsg", "ID ÀÔ·Â¿À·ù");
+			mv = new ModelAndView("err", "errMsg", "ID ï¿½Ô·Â¿ï¿½ï¿½ï¿½");
 		}
 		return mv;
 	}
@@ -58,7 +57,7 @@ public class LogMyController {
 			mv = new ModelAndView("login");
 			session.invalidate();
 		} else {
-			mv = new ModelAndView("login", "error_message", "·Î±×ÀÎ ÈÄ ÀÌ¿ë¹Ù¶ø´Ï´Ù.");
+			mv = new ModelAndView("login", "error_message", "ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì¿ï¿½Ù¶ï¿½ï¿½Ï´ï¿½.");
 		}
 		return mv;
 	}
@@ -73,6 +72,16 @@ public class LogMyController {
 //		}
 		mv.addObject(articleList);
 		mv.setViewName("mypage");
+		return mv;
+	}
+	
+	@RequestMapping("gongu")
+	public ModelAndView gongu(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+//		String userId = (String) session.getAttribute("id");
+//		List<Article> gonguList = service.myPage(userId);
+//		mv.addObject(gonguList);
+		mv.setViewName("gongu");
 		return mv;
 	}
 
