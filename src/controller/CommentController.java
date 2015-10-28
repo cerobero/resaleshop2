@@ -62,6 +62,7 @@ public class CommentController {
 		}
 	}
 
+	@RequestMapping(value="/c_delete.do")
 	public String deleteComment(int commentNo) {
 		if (service.deleteComment(commentNo)) {
 			return "c_delete_success";
