@@ -62,13 +62,13 @@ public class FaultyController {
 
 	}
 
-	@RequestMapping("f_view.do")
+/*	@RequestMapping("f_view.do")
 	public ModelAndView articleFaultyView(int faultyNo) {
 		Faulty articleFaulty = service.readFaulty(faultyNo);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("articleFaulty", articleFaulty);
 		mv.setViewName("f_view");
 		return mv;
-	}
+	}*/
 
 }
