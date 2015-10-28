@@ -7,7 +7,7 @@
 	<body>
 		<script type="text/javascript">
  			alert("${errMsg}");
- 			location.href="login?cmd=loginForm";
+ 	 		location.href="login";
  		</script>
 	</body>
 </html>

@@ -40,7 +40,7 @@
 	<c:if test="${empty sessionScope.id }">
 	<script type="text/javascript">
  		alert("로그인 된 사용자만 볼 수 있습니다");
- 		location.href="login?cmd=loginForm";
+ 		location.href="login";
  	</script>
 	</c:if>
 	<br><br>
@@ -51,7 +51,7 @@
         <!-- Page Header -->
         <div class="row">
 			<h1 class="page-header text-muted">
-				<mark>${sessionScope.id }</mark>님의 마이페이지
+				<mark>${sessionScope.id}</mark>님의 마이페이지
             </h1>
         </div>
         <!-- /.row -->
@@ -70,12 +70,12 @@
     		<th class="text-center">현재상태</th>
     		<th class="text-center">변 &nbsp; &nbsp; 경</th>
  		</tr>
-		<c:forEach var="article" items="${requestScope.articleList}">
+		<c:forEach var="article" items="${articleList}">
  		<tr>
     		<td class="text-center">${article.articleNo}</td>
 			<td class="text-center"><a href="itemInfo?type=read&articleNo=${article.articleNo}">${article.title}</a></td>
-<%-- 		<td class="text-center"><a href="read.jsp&articleNo=${article.articleNo}">${article.title}</a></td> --%>
-			<td class="text-center text-success"><span class="glyphicon glyphicon-comment"></span> (${article.commentNo})</td>
+<%-- 	<td class="text-center"><a href="read.jsp&articleNo=${article.articleNo}">${article.title}</a></td> --%>
+			<td class="text-center text-success"><span class="glyphicon glyphicon-comment"></span> (${article.cnt})</td>
     		<td class="text-center"><fmt:formatNumber value="${article.price}" pattern="￦ #,###.##"/> </td>
     		<td class="text-center text-warning"><fmt:formatDate value="${article.postingDate}" pattern="yyyy년 M월 d일 H:mm"/></td>
     <c:choose>
@@ -88,9 +88,9 @@
     </c:choose>
 			<td align="center">
 			<div class="btn-group-vertical">
-				<button type="button" class="btn btn-default" onClick="location.href='login?cmd=soldout&articleNo=${article.articleNo}'"><span class="glyphicon glyphicon-ok"></span> 완료</button>
-				<button type="button" class="btn btn-default" onClick="location.href='board?type=updateForm&articleNo=${article.articleNo}'"><span class="glyphicon glyphicon-pencil"></span> 수정</button>
-				<button type="button" class="btn btn-default" onClick="location.href='login?cmd=del&articleNo=${article.articleNo}'"><span class="glyphicon glyphicon-trash"></span> 삭제</button>
+				<button type="button" class="btn btn-default" onClick="soldout?articleNo=${article.articleNo}'"><span class="glyphicon glyphicon-ok"></span> 완료</button>
+				<button type="button" class="btn btn-default" onClick="updateForm?articleNo=${article.articleNo}'"><span class="glyphicon glyphicon-pencil"></span> 수정</button>
+				<button type="button" class="btn btn-default" onClick="delete?articleNo=${article.articleNo}'"><span class="glyphicon glyphicon-trash"></span> 삭제</button>
 			</div>
 			</td>
   		</tr>

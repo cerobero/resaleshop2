@@ -44,9 +44,9 @@
 			<ul class="nav navbar-nav navbar-right">
 				<c:choose>
 					<c:when test="${sessionScope.id != null }">
-						<li><a href="login?cmd=logout">로그아웃</a></li>
+						<li><a href="logout">로그아웃</a></li>
 						<li><a href="write">판매등록</a></li>
-						<li><a href="login?cmd=mypage">마이페이지</a></li>
+						<li><a href="mypage">마이페이지</a></li>
 					</c:when>
 					<c:otherwise>
 						<li><a href="login">로그인</a></li>

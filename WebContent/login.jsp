@@ -41,13 +41,13 @@
 					    	<h3 class="panel-title">회원 로그인</h3>
 					 	</div>
 					  	<div class="panel-body">
-					    	<form method="post" action="login?cmd=login" accept-charset="UTF-8" role="form">
+					    	<form method="post" action="loginCheck" accept-charset="UTF-8" role="form">
 		                    <fieldset>
 					    	  	<div class="form-group">
-					    		    <input class="form-control" placeholder="아이디" name="id" type="text">
+					    		    <input class="form-control" placeholder="아이디" name="userId" type="text">
 					    		</div>
 					    		<div class="form-group">
-					    			<input class="form-control" placeholder="비밀번호" name="pwd" type="password">
+					    			<input class="form-control" placeholder="비밀번호" name="userPw" type="password">
 					    		</div>
 					    		<input class="btn btn-lg btn-success btn-block" type="submit" value="로그인">
 					    	</fieldset>

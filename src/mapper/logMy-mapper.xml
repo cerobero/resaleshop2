@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.LogMyMapper">
+
+	<resultMap type="User" id="resultUser">
+		<result column="USER_NUM" property="userNum"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="USER_PW" property="userPw"/>
+		<result column="USER_NAME" property="userName"/>
+		<result column="USER_PHONE" property="userPhone"/>
+		<result column="USER_EMAIL" property="userEmail"/>
+		<result column="USER_AGE" property="userAge"/>
+	</resultMap>
+
+	<resultMap type="Article" id="resultArticle">
+		<result column="ARTICLE_NO" property="articleNo"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="TITLE" property="title"/>
+		<result column="PRICE" property="price"/>
+		<result column="READ_COUNT" property="readCount"/>
+		<result column="POSTING_DATE" property="postingDate"/>
+		<result column="PREMIUM" property="premium"/>
+		<result column="PHOTO" property="photo"/>
+		<result column="CATEGORY_ID" property="categoryId"/>
+		<result column="CONTENT" property="content"/>
+		<result column="SOLDOUT" property="soldout"/>
+		<result column="CNT" property="cnt"/>
+	</resultMap>
+
+	<select id="selectUser" parameterType="User" resultMap="resultUser">
+		SELECT USER_ID, USER_PW, USER_AGE FROM USER WHERE USER_ID=#{userId}
+	</select>
+	
+	<select id="itemStatus" parameterType="String" resultMap="resultArticle">
+		select A.article_no, A.title, A.price, A.posting_date, A.soldout, (select count(*) as cnt from comment where article_no=A.article_no) cnt from article A where user_id=#{userId}
+	
+	</select>
+				
+	<delete id="deleteArticle" parameterType="Integer">
+		delete from article where article_no=#{articleNo}	
+	</delete>
+
+	<update id="soldOut" parameterType="Integer">
+		update article set soldout=1 where article_no==#{articleNo}	
+	</update>
+
+</mapper>
+

@@ -15,6 +15,7 @@ public class Article
 	private int categoryId;
 	private String content;
 	private int soldout;
+	private int cnt;
 
 	public Article()
 	{
@@ -147,4 +148,20 @@ public class Article
 	{
 		this.soldout = soldout;
 	}
+
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+	
+	@Override
+	public String toString() {
+		return "Article [articleNo=" + articleNo + ", userId=" + userId + ", title=" + title + ", price=" + price
+				+ ", readCount=" + readCount + ", postingDate=" + postingDate + ", premium=" + premium + ", photo="
+				+ photo + ", categoryId=" + categoryId + ", content=" + content + ", soldout=" + soldout + "]";
+	}
+	
 }
