@@ -27,21 +27,22 @@ public class IndexService {
 			return new ArticlePage();
 		}
 
-		
-
 		List<Article> MainAllArticleList = dao.selectAllMainArticle(0, CPP);
 
 		int totalPageEndPage = articleTotalCount / CPP;
 
+		if (articleTotalCount < CPP){ 
+			totalPageEndPage = 1;}
+		
 		if (articleTotalCount % CPP != 0) {
 			totalPageEndPage++;
 		}
-		
-		return new ArticlePage(MainAllArticleList,totalPageEndPage, totalPageEndPage, totalPageEndPage,
+
+		return new ArticlePage(MainAllArticleList, totalPageEndPage, totalPageEndPage, totalPageEndPage,
 				totalPageEndPage);
 
 	}
-	
+
 	public ArticlePage getMainHotArticlePage() {
 		final int CPP = 4;
 
@@ -51,16 +52,16 @@ public class IndexService {
 			return new ArticlePage();
 		}
 
-		
-	
 		List<Article> MainHotArticleList = dao.selectHotMainArticle(0, CPP);
 
 		int totalPageEndPage = articleTotalCount / CPP;
-
+		if (articleTotalCount < CPP){
+			totalPageEndPage = 1;}
+		
 		if (articleTotalCount % CPP != 0) {
 			totalPageEndPage++;
 		}
-		System.out.println("MainHotArticle="+totalPageEndPage);
+		System.out.println("MainHotArticle=" + totalPageEndPage);
 		return new ArticlePage(MainHotArticleList, totalPageEndPage, totalPageEndPage, totalPageEndPage,
 				totalPageEndPage);
 
@@ -75,24 +76,24 @@ public class IndexService {
 			return new ArticlePage();
 		}
 
-	
-
 		List<Article> MainPremiumArticleList = dao.selectPremiumMainArticle(0, CPP);
 
 		int totalPageEndPage = articleTotalCount / CPP;
-
+		if (articleTotalCount < CPP){ 
+			totalPageEndPage = 1;}
+		
 		if (articleTotalCount % CPP != 0) {
 			totalPageEndPage++;
 		}
-		System.out.println("MainPremiumArticle="+totalPageEndPage);
+		System.out.println("MainPremiumArticle=" + totalPageEndPage);
 		return new ArticlePage(MainPremiumArticleList, totalPageEndPage, totalPageEndPage, totalPageEndPage,
 				totalPageEndPage);
 
 	}
-	
-	public Article readArticle(int articleNo){
-		Article selectArticle=dao.select(articleNo);
+
+	public Article readArticle(int articleNo) {
+		Article selectArticle = dao.select(articleNo);
 		return selectArticle;
 	}
-	
+
 }

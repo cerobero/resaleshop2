@@ -17,7 +17,8 @@
 	</resultMap>
 	
 	<insert id="insertArticle" parameterType="Article" useGeneratedKeys="true" keyColumn="ARTICLE_NO" keyProperty="articleNo">
-		INSERT INTO ARTICLE(USER_ID, TITLE, PRICE, READ_COUNT, POSTING_DATE, PREMIUM, PHOTO, CATEGORY_ID, CONTENT, SOLDOUT) VALUES(#{userId}, #{title}, #{price}, #{readCount}, #{postingDate}, #{premium}, #{photo}, #{categoryId}, #{content}, #{soldout})
+		INSERT INTO ARTICLE(USER_ID, TITLE, PRICE, READ_COUNT, POSTING_DATE, PREMIUM, PHOTO, CATEGORY_ID, CONTENT, SOLDOUT,FAULTY_CHECK) 
+		VALUES(#{userId}, #{title}, #{price}, #{readCount}, #{postingDate}, #{premium}, #{photo}, #{categoryId}, #{content}, #{soldout},#{faultyCheck})
 	</insert>
 	
 	<update id="updateArticle" parameterType="Article">

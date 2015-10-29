@@ -39,6 +39,7 @@ public class InsertController {
 	public String goWrite(Article article,HttpSession session){
 		article.setUserId((String)session.getAttribute("id"));
 		article.setPostingDate(new Date());
+		article.setFaultyCheck(0);
 		System.out.println("1");
 		System.out.println(article);
 		System.out.println(article.getMyfile());
@@ -53,17 +54,17 @@ public class InsertController {
 			File savedFile = new File(filePath);
 			System.out.println("3");
 			try {
-//				System.out.println("4¿©±â´Â µé¾î¿À³ª");
+//				System.out.println("4ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 //				System.out.println(article);
 //				System.out.println(article.getMyfile());
-				article.getMyfile().transferTo(savedFile);// ¾÷·Îµå ½ÇÇà
+				article.getMyfile().transferTo(savedFile);// ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½
 
 
 
 				article.setPhoto(savedFile.getAbsolutePath());
 				String result;
 				if(service.insertArticle(article)){
-					System.out.println("¾÷·Îµå ¿Ï·áµÊ.");
+					System.out.println("ï¿½ï¿½ï¿½Îµï¿½ ï¿½Ï·ï¿½ï¿½.");
 					result = "redirect:index.do";
 				} else {
 					result = "redirect:error.do";
