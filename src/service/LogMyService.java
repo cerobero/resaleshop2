@@ -45,14 +45,26 @@ public class LogMyService {
 	}
 
 	public void soldout(int articleNo) {
-		dao.soldOut(articleNo);
+		try{
+			dao.soldOut(articleNo);
+		}catch(Exception e){
+		}
 	}
-
-	public void delArticle(int articleNo) {
-		dao.deleteArticle(articleNo);
+		
+	public void delArticle(int articleNo){
+		try{
+			dao.deleteArticle(articleNo);
+		}catch(Exception e){
+		}
 	}
 
 	public int writeUser(String userId) {
-		return dao.writeUser(userId);
+		try {
+			if (dao.writeUser(userId) > 0) {
+				return 1;
+			}
+		} catch (Exception e) {
+		}
+		return 0;
 	}
 }

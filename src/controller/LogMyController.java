@@ -1,5 +1,6 @@
 package controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,9 +43,9 @@ public class LogMyController {
 			session.setAttribute("age", user.getUserAge());
 			mv = new ModelAndView("index");
 		} else if (ck == 0) {
-			mv = new ModelAndView("err", "errMsg", "占쏙옙橘占싫� 占쌉력울옙占쏙옙");
+			mv = new ModelAndView("err", "errMsg", "비밀번호 오류");
 		} else {
-			mv = new ModelAndView("err", "errMsg", "ID 占쌉력울옙占쏙옙");
+			mv = new ModelAndView("err", "errMsg", "ID 입력 오류");
 		}
 		return mv;
 	}
@@ -57,7 +58,7 @@ public class LogMyController {
 			mv = new ModelAndView("login");
 			session.invalidate();
 		} else {
-			mv = new ModelAndView("login", "errMsg", "占싸깍옙占쏙옙 占쏙옙 占싱울옙帽占쏙옙求占�.");
+			mv = new ModelAndView("login");
 		}
 		return mv;
 	}
@@ -75,27 +76,49 @@ public class LogMyController {
 		return mv;
 	}
 
+	@RequestMapping("gonguView.do")
+	public String gonguView() {
+		return "gonguView";
+	}
+	
 	@RequestMapping("gongu.do")
-	public ModelAndView gongu(HttpSession session) {
+ 	public ModelAndView gongu(HttpSession session) {
+ 		ModelAndView mv = new ModelAndView();
+		String userId = (String) session.getAttribute("id");
+		if (userId == null) {
+			mv = new ModelAndView("redirect: login.do");
+		}else {
+			int rs=service.writeUser(userId);
+			if(rs==1){
+			mv = new ModelAndView("win", "winMsg", "공동구매 신청되었습니다!!!!!");
+			}else {
+				mv=new ModelAndView("gonguView");
+			}
+		}
+		return mv;
+	}
+
+	@RequestMapping("winner.do")
+	public ModelAndView gonguList(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 //		String userId = (String) session.getAttribute("id");
 //		List<Article> gonguList = service.myPage(userId);
 //		mv.addObject(gonguList);
-		mv.setViewName("gongu");
-		return mv;
-	}
+ 		mv.setViewName("gongu");
+ 		return mv;
+ 	}
 
 	@RequestMapping("soldout.do")
 	public String soldOut(int articleNo) {
 //		int articleNo = article.getArticleNo();
 		service.soldout(articleNo);
-		return "mypage";
+		return "redirect: mypage.do";
 	}
 
 	@RequestMapping("delete.do")
 	public String delete(Article article) {
 		int articleNo = article.getArticleNo();
 		service.delArticle(articleNo);
-		return "mypage";
+		return "redirect: mypage.do";
 	}
 }
