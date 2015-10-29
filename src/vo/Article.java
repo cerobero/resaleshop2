@@ -16,6 +16,7 @@ public class Article
 	private String content;
 	private int soldout;
 	private int cnt;
+	private int faultyCheck;
 
 	public Article()
 	{
@@ -23,7 +24,7 @@ public class Article
 	}
 
 	public Article(int articleNo, String userId, String title, int price, int readCount, Date postingDate,
-	        int premium, String photo, int categoryId, String content, int soldout)
+	        int premium, String photo, int categoryId, String content, int soldout,int faultyCheck)
 	{
 		super();
 		this.articleNo = articleNo;
@@ -37,6 +38,15 @@ public class Article
 		this.categoryId = categoryId;
 		this.content = content;
 		this.soldout = soldout;
+		this.faultyCheck=faultyCheck;
+	}
+
+	public int getFaultyCheck() {
+		return faultyCheck;
+	}
+
+	public void setFaultyCheck(int faultyCheck) {
+		this.faultyCheck = faultyCheck;
 	}
 
 	public int getArticleNo()
@@ -161,7 +171,7 @@ public class Article
 	public String toString() {
 		return "Article [articleNo=" + articleNo + ", userId=" + userId + ", title=" + title + ", price=" + price
 				+ ", readCount=" + readCount + ", postingDate=" + postingDate + ", premium=" + premium + ", photo="
-				+ photo + ", categoryId=" + categoryId + ", content=" + content + ", soldout=" + soldout + "]";
+				+ photo + ", categoryId=" + categoryId + ", content=" + content + ", soldout=" + soldout + ", faultyCheck"+faultyCheck+"]";
 	}
 	
 }

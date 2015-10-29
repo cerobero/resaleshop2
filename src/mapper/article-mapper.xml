@@ -13,6 +13,7 @@
 		<result column="CATEGORY_ID" property="categoryId"/>
 		<result column="CONTENT" property="content"/>
 		<result column="SOLDOUT" property="soldout"/>
+		<result column="FAULTY_CHECK" property="faultyCheck"/>
 	</resultMap>
 	
 	<insert id="insertArticle" parameterType="Article" useGeneratedKeys="true" keyColumn="ARTICLE_NO" keyProperty="articleNo">
@@ -85,5 +86,6 @@
 	<select id="selectMainArticleListPremium" parameterType="Map" resultMap="resultArticle">
 		SELECT * FROM ARTICLE WHERE PREMIUM=1 AND ORDER BY ARTICLE_NO DESC LIMIT #{startIndex}, #{numOfIndex}
 	</select>
+	
 	
 </mapper>
