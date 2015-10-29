@@ -248,10 +248,10 @@ input[type=file] {
 				</a>
 				<!-- 이쪽은 아직 어떻게 할지 모르겠음 20151026 -->
 				<%-- <c:if test="${sessionScope.id == readArticle.userId }"> --%>
-					<a href="update_form.do?articleNo=${readArticle.articleNo}">
+					<a href="a_update_form.do?articleNo=${readArticle.articleNo}">
 						<button class="btn btn-success">글 수정</button>
 					</a>
-					<a href="login?cmd=delete.do?articleNo=${readArticle.articleNo }">
+					<a href="a_delete.do?articleNo=${readArticle.articleNo }">
 						<button class="btn btn-success">글 삭제</button>
 					</a>
 				<%-- </c:if> --%>

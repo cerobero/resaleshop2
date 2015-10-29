@@ -18,7 +18,7 @@ public class ReadController {
 	}
 	
 	
-	@RequestMapping(value="update_form.do")
+	@RequestMapping(value="a_update_form.do")
 	public ModelAndView updateForm(int articleNo){
 		System.out.println("업데이트 아티클넘버 : "+articleNo);
 		Article original=aservice.readArticle(articleNo);
@@ -28,7 +28,7 @@ public class ReadController {
 		return mv;
 	}
 	
-	@RequestMapping(value="update.do")
+	@RequestMapping(value="a_update.do")
 	public String update(Article article) {
 		if(aservice.updateArticle(article)){
 			return "update_success";
@@ -37,7 +37,7 @@ public class ReadController {
 		}
 	}
 	
-	@RequestMapping(value="delete.do")
+	@RequestMapping(value="a_delete.do")
 	public String delete(int articleNo){
 		if(aservice.deleteArticle(articleNo)){
 			return "delete_success";

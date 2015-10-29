@@ -304,7 +304,7 @@
 	      <div class="controls">
 	      <input type="hidden" id="content" name="content">
 	      <input type="hidden" name="articleNo" value="${original.articleNo}">
-	      <input type="hidden" id="type" name="type" value="update.do">
+	      <input type="hidden" id="type" name="type" value="a_update.do">
 	      <button class="btn btn-success" id="update.do" >수정하기</button>
 	      <button class="btn btn-success" id="cancel" onclick="cancelUpdate()">취소</button>
 	      </div>
