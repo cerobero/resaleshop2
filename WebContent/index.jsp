@@ -58,6 +58,9 @@
 						</h4>
 						<p>${article.content}</p>
 					</div>
+					<c:if test="${article.faultyCheck>0}">
+						<div>불량신고가 있는 상품입니다!</div>
+					</c:if>
 				</c:forEach>
 			</div>
 		</c:if>
@@ -84,6 +87,9 @@
 							<a href="read&articleNo=${article.articleNo}">${article.title}</a>
 						</h4>
 						<p>${article.content}</p>
+						<c:if test="${article.faultyCheck>0}">
+							<div>불량신고가 있는 상품입니다!</div>
+						</c:if>
 					</div>
 				</c:forEach>
 			</div>
@@ -110,6 +116,9 @@
 							<a href="read&articleNo=${article.articleNo}">${article.title}</a>
 						</h4>
 						<p>${article.content}</p>
+						<c:if test="${article.faultyCheck>0}">
+							<div>불량신고가 있는 상품입니다!</div>
+						</c:if>
 					</div>
 				</c:forEach>
 			</div>
