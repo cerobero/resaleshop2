@@ -61,6 +61,15 @@ public class FaultyController {
 		}
 
 	}
+	
+	public String deleteFaulty(int faultyNo,int accUserNum){
+		if(service.deleteFaulty(faultyNo, accUserNum)){
+			return "f_delete_success";
+		}
+		else {
+			return "f_delete_fail";
+		}
+	}
 
 /*	@RequestMapping("f_view.do")
 	public ModelAndView articleFaultyView(int faultyNo) {

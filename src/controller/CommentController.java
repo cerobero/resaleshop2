@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,7 +42,7 @@ public class CommentController {
 		}
 	}
 
-	@RequestMapping(value = "rewrite_form.do")
+	@RequestMapping(value = "c_rewrite_form.do")
 	public ModelAndView reWriteCommentForm(int commentNo) {
 		Comment originalComment = service.readComment(commentNo);
 		ModelAndView mv = new ModelAndView();

@@ -175,20 +175,22 @@ input[type=file] {
 			<div class="hero-unit">
 				<div id="legend" class="page-header">
 					<c:choose>
-						<c:when test="${readArticle.premiume==1}">
-							<h1 class="pull-left">[${readArticle.categoryName}]
+						<c:when test="${readArticle.premium==1}">
+							<h1 class="pull-left">[${readArticle.categoryId}]
 								${readArticle.title}&nbsp;&nbsp;프리미엄 상품</h1>
 						</c:when>
-						<c:when test="${readArticle.premiume==0}">
-							<h1 class="pull-left">[${readArticle.categoryName}]
-								${readArticle.itemArticle.title}</h1>
+						<c:when test="${readArticle.premium==0}">
+							<h1 class="pull-left">[${readArticle.categoryId}]
+								${readArticle.title}</h1>
 						</c:when>
 					</c:choose>
 					<h1 class="pull-right">
 						<small>조회수 ${readArticle.readCount}&nbsp;|
-							등록일 ${readArticle.itemArticle.postingDate}</small>
+							등록일 ${readArticle.postingDate}</small>
 					</h1>
-					<div class="clearfix"></div>
+					<div class="clearfix">
+					
+					</div>
 				</div>
 
 				<!---
@@ -226,8 +228,8 @@ input[type=file] {
 
 				<!-- 		<textarea class="form-control" rows="10"> -->
 				<div>
-					<!-- 			<img src="upload/balloon.png"><br> -->
-					${requestScope.itemArticle.content}
+				 <img src="${readArticle.photo}"><br> 
+					${readArticle.content}
 				</div>
 				<!-- 		</textarea> -->
 			</div>
@@ -245,14 +247,14 @@ input[type=file] {
 					<button class="btn btn-success">상품 목록</button>
 				</a>
 				<!-- 이쪽은 아직 어떻게 할지 모르겠음 20151026 -->
-				<c:if test="${sessionScope.id == readArticle.userId }">
-					<a href="board?type=updateForm&articleNo=${readArticle.articleNo}">
+				<%-- <c:if test="${sessionScope.id == readArticle.userId }"> --%>
+					<a href="update_form.do?articleNo=${readArticle.articleNo}">
 						<button class="btn btn-success">글 수정</button>
 					</a>
-					<a href="login?cmd=del&articleNo=${readArticle.articleNo }">
+					<a href="login?cmd=delete.do?articleNo=${readArticle.articleNo }">
 						<button class="btn btn-success">글 삭제</button>
 					</a>
-				</c:if>
+				<%-- </c:if> --%>
 			</div>
 		</div>
 
@@ -282,8 +284,8 @@ input[type=file] {
                               ${comment.content }
                             </div>
                           	<div>
-                          		<a href="c_rewrite_form">[댓글 고치기]</a>
-                          		<a href="c_delete">[댓글 지우기]</a>
+                          		<a href="c_rewrite_form.do">[댓글 고치기]</a>
+                          		<a href="c_delete.do">[댓글 지우기]</a>
                           	</div>
                           </div>
                     </c:forEach>

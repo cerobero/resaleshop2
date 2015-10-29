@@ -41,8 +41,8 @@ public class ArticleService
 		        : articleCount / ARTICLE_PER_PAGE;
 		startPage = currentPage > VIEW_PAGES / 2 ? currentPage - VIEW_PAGES / 2 + 1 : 1;
 		endPage = totalPage > startPage + VIEW_PAGES - 1 ? startPage + VIEW_PAGES - 1 : totalPage;
-		startPage = totalPage == endPage && endPage > VIEW_PAGES
-		        ? endPage - VIEW_PAGES + 1 : startPage;
+		startPage = totalPage == endPage && endPage > ARTICLE_PER_PAGE && startPage > ARTICLE_PER_PAGE
+		        ? endPage - ARTICLE_PER_PAGE + 1 : startPage;
 		articleList = categoryId == 0
 		        ? dao.selectListAll(search, (currentPage - 1) * ARTICLE_PER_PAGE, ARTICLE_PER_PAGE)
 		        : dao.selectListCategory(search, categoryId, (currentPage - 1) * ARTICLE_PER_PAGE,
@@ -73,8 +73,8 @@ public class ArticleService
 		        : articleCount / ARTICLE_PER_PAGE;
 		startPage = currentPage > VIEW_PAGES / 2 ? currentPage - VIEW_PAGES / 2 + 1 : 1;
 		endPage = totalPage > startPage + VIEW_PAGES - 1 ? startPage + VIEW_PAGES - 1 : totalPage;
-		startPage = totalPage == endPage && endPage > VIEW_PAGES
-		        ? endPage - VIEW_PAGES + 1 : startPage;
+		startPage = totalPage == endPage && endPage > ARTICLE_PER_PAGE && startPage > ARTICLE_PER_PAGE
+		        ? endPage - ARTICLE_PER_PAGE + 1 : startPage;
 		articleList = dao.selectListHot(search, (currentPage - 1) * ARTICLE_PER_PAGE, ARTICLE_PER_PAGE);
 		pageArticleCount = articleList.size();
 
@@ -98,13 +98,32 @@ public class ArticleService
 		        : articleCount / ARTICLE_PER_PAGE;
 		startPage = currentPage > VIEW_PAGES / 2 ? currentPage - VIEW_PAGES / 2 + 1 : 1;
 		endPage = totalPage > startPage + VIEW_PAGES - 1 ? startPage + VIEW_PAGES - 1 : totalPage;
-		startPage = totalPage == endPage && endPage > VIEW_PAGES
-		        ? endPage - VIEW_PAGES + 1 : startPage;
+		startPage = totalPage == endPage && endPage > ARTICLE_PER_PAGE && startPage > ARTICLE_PER_PAGE
+		        ? endPage - ARTICLE_PER_PAGE + 1 : startPage;
 		articleList = dao.selectListPremium(search, (currentPage - 1) * ARTICLE_PER_PAGE, ARTICLE_PER_PAGE);
 		pageArticleCount = articleList.size();
 
 		return new ArticlePage(articleList, articleCount, pageArticleCount, currentPage, startPage, endPage);
 	}
 	
+	public boolean updateArticle(Article article){
+		if(dao.update(article)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public boolean deleteArticle(int articleNo){
+		if(dao.delete(articleNo)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public Article readArticle(int articleNo){
+		return dao.select(articleNo);
+	}
 
 }

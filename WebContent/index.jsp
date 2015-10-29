@@ -54,7 +54,7 @@
 							class="img-responsive" src="${article.photo}" alt="">
 						</a>
 						<h4>
-							<a href="read&articleNo=${article.articleNo}">${article.title}</a>
+							<a href="read.do?articleNo=${article.articleNo}">${article.title}</a>
 						</h4>
 						<p>${article.content}</p>
 					</div>
@@ -84,7 +84,7 @@
 							class="img-responsive" src="${article.photo}" alt="">
 						</a>
 						<h4>
-							<a href="read&articleNo=${article.articleNo}">${article.title}</a>
+							<a href="read.do?articleNo=${article.articleNo}">${article.title}</a>
 						</h4>
 						<p>${article.content}</p>
 						<c:if test="${article.faultyCheck>0}">
@@ -113,7 +113,7 @@
 							class="img-responsive" src="${article.photo}" alt="">
 						</a>
 						<h4>
-							<a href="read&articleNo=${article.articleNo}">${article.title}</a>
+							<a href="read.do?articleNo=${article.articleNo}">${article.title}</a>
 						</h4>
 						<p>${article.content}</p>
 						<c:if test="${article.faultyCheck>0}">

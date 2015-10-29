@@ -211,17 +211,17 @@
 		<div class="control-group">
 			<div class="controls">
 				<label class="control-label" for="title">제목</label>
-				<input type="text" id="title" class="input-xlarge" name ="title" value="${requestScope.itemArticle.title}">
+				<input type="text" id="title" class="input-xlarge" name ="title" value="${original.title}">
 			</div>
 		</div>
 		
 		<div class="control-group">
 			<div class="controls">
 				<label class="control-label" for="price" style="width: 60px;">가격</label>
-				<input type="text" id="price" class="input-large" name="price" value="${requestScope.itemArticle.price}">
+				<input type="text" id="price" class="input-large" name="price" value="${original.price}">
 				
-<!-- 				<label class="control-label" for="photo">사진등록</label> -->
-<%-- 				<input type="file" id="item" class="btn btn-default btn-file" name="photo" value="${requestScope.itemArticle.photo }"> --%>
+				<label class="control-label" for="photo">사진등록</label> -->
+				<input type="file" id="item" class="btn btn-default btn-file" name="photo" value="${original.photo}"> 
 			</div>
 		</div>
 		
@@ -303,9 +303,9 @@
 	      <!-- Button -->
 	      <div class="controls">
 	      <input type="hidden" id="content" name="content">
-	      <input type="hidden" name="articleNo" value="${requestScope.itemArticle.articleNo}">
-	      <input type="hidden" id="type" name="type" value="update">
-	      <button class="btn btn-success" id="update" >수정하기</button>
+	      <input type="hidden" name="articleNo" value="${original.articleNo}">
+	      <input type="hidden" id="type" name="type" value="update.do">
+	      <button class="btn btn-success" id="update.do" >수정하기</button>
 	      <button class="btn btn-success" id="cancel" onclick="cancelUpdate()">취소</button>
 	      </div>
 	    </div>
