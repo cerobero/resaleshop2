@@ -27,12 +27,12 @@ public class LogMyController {
 		this.service = service;
 	}
 
-	@RequestMapping("/login")
+	@RequestMapping("/login.do")
 	public String loginForm() {
-		return "login";
+		return "login.do";
 	}
 
-	@RequestMapping("/loginCheck")
+	@RequestMapping("/loginCheck.do")
 	public ModelAndView login(User user, HttpSession session) {
 		ModelAndView mv = null;
 		int ck = service.isLogin(user);
@@ -40,29 +40,29 @@ public class LogMyController {
 			session.setAttribute("id", user.getUserId());
 			session.setAttribute("pw", user.getUserPw());
 			session.setAttribute("age", user.getUserAge());
-			mv = new ModelAndView("index");
+			mv = new ModelAndView("index.do");
 		} else if (ck == 0) {
-			mv = new ModelAndView("err", "errMsg", "��й�ȣ �Է¿���");
+			mv = new ModelAndView("err.do", "errMsg", "占쏙옙橘占싫� 占쌉력울옙占쏙옙");
 		} else {
-			mv = new ModelAndView("err", "errMsg", "ID �Է¿���");
+			mv = new ModelAndView("err.do", "errMsg", "ID 占쌉력울옙占쏙옙");
 		}
 		return mv;
 	}
 
-	@RequestMapping(value = "logout")
+	@RequestMapping(value = "logout.do")
 	public ModelAndView logout(HttpSession session) {
 		ModelAndView mv = null;
 		String userId = (String) session.getAttribute("id");
 		if (userId != null) {
-			mv = new ModelAndView("login");
+			mv = new ModelAndView("login.do");
 			session.invalidate();
 		} else {
-			mv = new ModelAndView("login", "error_message", "�α��� �� �̿�ٶ��ϴ�.");
+			mv = new ModelAndView("login.do", "errMsg", "占싸깍옙占쏙옙 占쏙옙 占싱울옙帽占쏙옙求占�.");
 		}
 		return mv;
 	}
 
-	@RequestMapping("mypage")
+	@RequestMapping("mypage.do")
 	public ModelAndView myPage(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		String userId = (String) session.getAttribute("id");
@@ -71,31 +71,45 @@ public class LogMyController {
 //			System.out.println(a);
 //		}
 		mv.addObject(articleList);
-		mv.setViewName("mypage");
+		mv.setViewName("mypage.do");
 		return mv;
 	}
 	
-	@RequestMapping("gongu")
+	@RequestMapping("gonguView.do")
+	public String gonguView() {
+		return "gonguView.do";
+	}
+	
+	@RequestMapping("gongu.do")
 	public ModelAndView gongu(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-//		String userId = (String) session.getAttribute("id");
-//		List<Article> gonguList = service.myPage(userId);
-//		mv.addObject(gonguList);
-		mv.setViewName("gongu");
+		String userId = (String) session.getAttribute("id");
+		if (userId == null) {
+			mv = new ModelAndView("redirect: login.do");
+		} else {
+			mv = new ModelAndView("gongu.do", "winMsg", "공동구매 신청되었습니다");
+			service.writeUser(userId);
+		}
 		return mv;
 	}
 
-	@RequestMapping("soldout")
-	public String soldOut(int articleNo) {
-//		int articleNo = article.getArticleNo();
-		service.soldout(articleNo);
-		return "mypage";
+	@RequestMapping("winner.do")
+	public ModelAndView gonguList(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("gongu.do");
+		return mv;
 	}
 
-	@RequestMapping("delete")
+	@RequestMapping("soldout.do")
+	public String soldOut(int articleNo) {
+		service.soldout(articleNo);
+		return "redirect: mypage.do";
+	}
+
+	@RequestMapping("delete.do")
 	public String delete(Article article) {
 		int articleNo = article.getArticleNo();
 		service.delArticle(articleNo);
-		return "mypage";
+		return"redirect: mypage.do";
 	}
 }

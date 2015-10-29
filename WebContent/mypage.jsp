@@ -40,7 +40,7 @@
 	<c:if test="${empty sessionScope.id }">
 	<script type="text/javascript">
  		alert("로그인 된 사용자만 볼 수 있습니다");
- 		location.href="login";
+ 		location.href="login.do";
  	</script>
 	</c:if>
 	<br><br>
@@ -88,9 +88,9 @@
     </c:choose>
 			<td align="center">
 			<div class="btn-group-vertical">
-				<button type="button" class="btn btn-default" onClick="location.href='soldout?articleNo=${article.articleNo}'"><span class="glyphicon glyphicon-ok"></span> 완료</button>
-				<button type="button" class="btn btn-default" onClick="location.href='updateForm?articleNo=${article.articleNo}'"><span class="glyphicon glyphicon-pencil"></span> 수정</button>
-				<button type="button" class="btn btn-default" onClick="location.href='delete?articleNo=${article.articleNo}'"><span class="glyphicon glyphicon-trash"></span> 삭제</button>
+				<button type="button" class="btn btn-default" onClick="location.href='soldout.do?articleNo=${article.articleNo}'"><span class="glyphicon glyphicon-ok"></span> 완료</button>
+				<button type="button" class="btn btn-default" onClick="location.href='updateForm.do?articleNo=${article.articleNo}'"><span class="glyphicon glyphicon-pencil"></span> 수정</button>
+				<button type="button" class="btn btn-default" onClick="location.href='delete.do?articleNo=${article.articleNo}'"><span class="glyphicon glyphicon-trash"></span> 삭제</button>
 			</div>
 			</td>
   		</tr>

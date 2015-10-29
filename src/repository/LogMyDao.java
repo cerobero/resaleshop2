@@ -36,5 +36,11 @@ public class LogMyDao {
 	}
 	public int soldOut(int articleNo) {
 		return session.getMapper(LogMyMapper.class).soldOut(articleNo);
+	}
+
+	public int writeUser(String userId) {
+		System.out.println(userId);
+		LogMyMapper mapper = session.getMapper(LogMyMapper.class);
+		return mapper.writeUser(userId);
 	}	
 }

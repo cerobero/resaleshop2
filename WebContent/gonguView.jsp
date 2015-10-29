@@ -64,6 +64,35 @@
 <script src="resource/bootstrap-wysiwyg-master/bootstrap-wysiwyg.js"></script>
 
 <script>
+
+	window.onload=function timeck() {
+// 		function timeck(){
+		var startdate = "2015102822";
+		var enddate = "2015110224";
+
+		var now = new Date();
+
+		year = now.getFullYear();
+		month = now.getMonth() + 1;
+		if ((month + "").length < 2) {
+			month = "0" + month;
+		}
+		date = now.getDate();
+		if ((date + "").length < 2) {
+			date = "0" + date;
+		}
+		hour = now.getHours();
+		if ((hour + "").length < 2) {
+			hour = "0" + hour;
+		}
+		var today = year + "" + month + "" + date + "" + hour;
+		console.log("today:"+today);
+		if ((eval(today) >= eval(startdate)) && ((eval(today) <= eval(enddate)))) {
+			$('#btn-tc').prop('disabled', false);
+		}
+	}
+// 	timeck();
+	
 	function test() {
 		$('#content').val(
 				document.getElementById("comments-insert-body").innerHTML);
@@ -168,6 +197,13 @@ input[type=file] {
 
 	<%@ include file="nav.jsp"%>
 
+<c:if test="${empty sessionScope.id }">
+	<script type="text/javascript">
+ 		alert("로그인 된 사용자만 볼 수 있습니다");
+ 		location.href="login.do";
+ 	</script>
+	</c:if>
+	
 	<br>
 
 	<div class="container">
@@ -185,42 +221,6 @@ input[type=file] {
 						</c:when>
 					</c:choose>
 					<div align="center"><h1>중고(딩)나라 공동구매</h1></div>
-					<h1 class="pull-right">
-						<small>조회수 ${requestScope.itemArticle.readCount}&nbsp;|
-							등록일 ${requestScope.itemArticle.postingDate}</small>
-					</h1>
-					<div class="clearfix"></div>
-				</div>
-
-				<!---
-		Please read this before copying the toolbar:
-
-		* One of the best things about this widget is that it does not impose any styling on you, and that it allows you
-		* to create a custom toolbar with the options and functions that are good for your particular use. This toolbar
-		* is just an example - don't just copy it and force yourself to use the demo styling. Create your own. Read
-		* this page to understand how to customise it:
-	    * https://github.com/mindmup/bootstrap-wysiwyg/blob/master/README.md#customising-
-		--->
-<!-- 				<div class="control-group"> -->
-<!-- 					<div class="controls"> -->
-<!-- 						<label class="control-label" for="price" style="width: 60px;">가격</label> -->
-<!-- 						<input type="text" id="price" class="input-large" disabled -->
-<%-- 							value="${requestScope.itemArticle.price}"> <label --%>
-<!-- 							class="control-label" for="userid">아이디</label> <input type="text" -->
-<!-- 							id="item" class="input-large" disabled -->
-<%-- 							value="${requestScope.itemArticle.userId}"> <label --%>
-<!-- 							class="control-label" for="userid">판매여부</label> -->
-<%-- 						<c:choose> --%>
-<%-- 							<c:when test="${requestScope.itemArticle.soldout == 1}"> --%>
-<!-- 								<input type="text" id="item" class="input-large" disabled -->
-<!-- 									value="판매완료"> -->
-<%-- 							</c:when> --%>
-<%-- 							<c:when test="${requestScope.itemArticle.soldout == 0}"> --%>
-<!-- 								<input type="text" id="item" class="input-large" disabled -->
-<!-- 									value="판매중"> -->
-<%-- 							</c:when> --%>
-<%-- 						</c:choose> --%>
-<!-- 					</div> -->
 				</div>
 
 				<br>
@@ -237,26 +237,12 @@ input[type=file] {
 		<div class="control-group text-center">
 			<!-- Button -->
 			
-<%-- 				<a href="list?view=${param.view }&categoryId=${param.categoryId }&page=${param.page }&search=${param.search }"> --%>
-<!-- 					<button class="btn btn-success">글 목록</button> -->
-<!-- 				</a> -->
-<%-- 				<c:if test="${sessionScope.id == requestScope.itemArticle.userId }"> --%>
-<%-- 					<a href="board?type=updateForm&articleNo=${requestScope.itemArticle.articleNo}"> --%>
-<!-- 						<button class="btn btn-success">글 수정</button> -->
-<!-- 					</a> -->
-<%-- 					<a href="login?cmd=del&articleNo=${requestScope.itemArticle.articleNo }"> --%>
-<!-- 						<button class="btn btn-success">글 삭제</button> -->
-<!-- 					</a> -->
-<%-- 				</c:if> --%>
-<!-- 			</div> -->
-<!-- 		</div> -->
-
 		<div class="container">
             <div class="row">
                 <div class="col-md-12">
                
                
-<table border="1">
+<table class="table table-striped table-hover">
     <tr>
         <td width="350" rowspan="12"><img src="resource/img/stm.jpg"></td>
         <td width="97">제품명</td>
@@ -276,7 +262,7 @@ input[type=file] {
     </tr>
     <tr>
         <td width="97">진행</td>
-        <td width="460">2015/11/01/22:30:00 부터 ~ 2015/11/03/23:59:59 까지</td>
+        <td width="460">2015/10/28/22:00:00 부터 ~ 2015/11/02/23:59:59 까지</td>
     </tr>
     <tr>
         <td width="97">배송비</td>
@@ -294,39 +280,6 @@ input[type=file] {
         <td width="97">신청수</td>
         <td width="460" >
         
-<script language="javascript">
- function unlock()
- {
-  check_attack.check.value=0;
- }
-
- function check_submit()
- {
-        if (confirm("라온티앤아이 타무즈 스톤 X-10 게이밍 마우스는 정보 공유를 위한 특가진행 입니다. 정보 공유를 위한 지름이 맞습니까? 정말 라온티앤아이 타무즈 스톤 X-10 게이밍 마우스 제품을 신청하시겠습니까?\n 특가선정이 되었을 시 제품 발송을 위한 신상정보를 업체측에 통보합니다. 본 내용 동의하십니까?")) { 
-
-        } else { 
-          return false; 
-        } 
-
- 
-  if(document.check_attack.check.value==1)
-  {
-   alert('신청 버튼을 여러번 누르시면 안됩니다');
-   return false;
-  }
- }
-</script>
-
-<!-- <form method="post" name="write2" action="skin/09main/in09_ok.php" onsubmit="return check_submit();" enctype="multipart/form-data"> -->
-<!-- <input type="hidden" name="no" value="2065" /> -->
-<!-- <input type="hidden" name="won" value="12500" /> -->
-<!-- <input type="hidden" name="dayya" value="무료 배송" /> -->
-<!-- <input type="hidden" name="dayxd" value="라온티앤아이 타무즈 스톤 X-10 게이밍 마우스" /> -->
-<!-- <input type="hidden" name="dayy" value="" /> -->
-<!-- <input type="hidden" name="xw" value="162923" /> -->
-<!-- <input type="hidden" name="xf" value="0" /> -->
-
-
 <input type="hidden" name="xx" value="1" />
 1개만 신청할 수 있습니다.
 </td>
@@ -338,13 +291,15 @@ input[type=file] {
 
     <tr>
         <td width="97">
-				<a href=""><button class="btn btn-success">구매</button></a>
-				</td>
+				<button type='button'  id="btn-tc" class="btn btn-primary" disabled="disabled" onClick="location.href='gongu.do'">구매</button>
+		</td>
+		<td>구매 버튼은 공구 시작시간에 활성화 되어, 종료시간에 비활성화 됩니다</td>
+		<script type="text/javascript">
+ 			alert("${winMsg}");
+ 		</script>
+		
         <td width="460" colspan="2">
-<br><br><br><br><br>
-
-<!-- <input type=image src="skin/09main/i/09-2.gif"> -->
-<!-- <input type="hidden" name="xe" value="14459526011445570577" /> -->
+<br><br><br>
 
 </td>
     </tr>
@@ -355,18 +310,18 @@ input[type=file] {
 <a href="skin/09main/member_09.php?b_no=-2065&sp=162923&subject=라온티앤아이 타무즈 스톤 X-10 게이밍 마우스" onClick="return show_hide_abox(this,800,4962,'10px solid')">⊙ 신청자 기록 보기</a>
 
 <br><br><font color=red>*</font> 특가 재판매 관련<br>
-<font color=red>*</font> 수령지 미기재 신청 안됨 / 자진취소자 3개월 / 가입제한 3일
+<font color=red>*수령지 미기재 신청 안됨 / 자진취소자 3개월 / 가입제한 3일</font>
 </td>
 </tr>
 </table>
-<hr>
-* 중고(딩)나라 특가 진행은 쿨엔조이의 별도의 수수료 없이 진행되는 특가입니다. <br>
+<hr align="left">
+* 중고(딩)나라 특가 진행은 별도의 수수료 없이 진행되는 특가입니다. <br>
 * 중고(딩)나라는 회원분들에게 직접적으로 입금 받지 않습니다. 입금은 진행업체 계좌로 처리됩니다.<br>
 * 입금관련, 현금영수증, 발송등의 내용은 진행업체쪽으로 문의 바랍니다. <br>
 * 중고(딩)나라는 판매의 당사자가 아니며 상품 주문, 배송 및 환불의 의무와 책임은 각 진행업체에 있습니다.<br>
 * 중고(딩)나라는 특가는 개인 회원만을 위한 특가 입니다. 사업자는 참여 할 수 없습니다.<br>
 * 비정상적인 방법으로 특가 시도 및 신청시 해당 유저는 제재 또는 영구제재 처리됩니다. <br>
-<hr>
+<hr><br><br>
                <div align="center" >
                     <h2>★ 공식 DB 리뷰 ★ </h2><br><br>
 

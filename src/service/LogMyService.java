@@ -51,4 +51,8 @@ public class LogMyService {
 	public void delArticle(int articleNo) {
 		dao.deleteArticle(articleNo);
 	}
+
+	public int writeUser(String userId) {
+		return dao.writeUser(userId);
+	}
 }
