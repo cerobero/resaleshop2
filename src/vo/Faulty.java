@@ -7,32 +7,24 @@ public class Faulty {
 	private int articleNo;// article_no
 	private String photo; // photo
 	private String accId;// accuser_id
-	private String accName;// accuser_name
-	private String accPhone;// accuser_phone
-	private String accEmail;// accuser_email
 	private Date accDate;// accusation_date
 	private String accTitle;// accusation_title
 	private String accContent;// accusation_content
-	private int faultyCheck;// faulty_check
 	////////////////////////////////////////////////
 
 	public Faulty() {
 
 	}
 
-	public Faulty(int faultyNo, int articleNo, String photo, String accId, String accName, String accPhone,
-			String accEmail, Date accDate, String accTitle, String accContent, int faultyCheck) {
+	public Faulty(int faultyNo, int articleNo, String photo, String accId,Date accDate, String accTitle, String accContent) {
 		this.faultyNo = faultyNo;
 		this.articleNo = articleNo;
 		this.photo = photo;
 		this.accId = accId;
-		this.accName = accName;
-		this.accPhone = accPhone;
-		this.accEmail = accEmail;
 		this.accDate = accDate;
 		this.accTitle = accTitle;
 		this.accContent = accContent;
-		this.faultyCheck = faultyCheck;
+	
 	}
 //////////////////////////////////////////////////////////////	
 
@@ -68,30 +60,6 @@ public class Faulty {
 		this.accId = accId;
 	}
 
-	public String getAccName() {
-		return accName;
-	}
-
-	public void setAccName(String accName) {
-		this.accName = accName;
-	}
-
-	public String getAccPhone() {
-		return accPhone;
-	}
-
-	public void setAccPhone(String accPhone) {
-		this.accPhone = accPhone;
-	}
-
-	public String getAccEmail() {
-		return accEmail;
-	}
-
-	public void setAccEmail(String accEmail) {
-		this.accEmail = accEmail;
-	}
-
 	public Date getAccDate() {
 		return accDate;
 	}
@@ -116,13 +84,7 @@ public class Faulty {
 		this.accContent = accContent;
 	}
 
-	public int getFaultyCheck() {
-		return faultyCheck;
-	}
 
-	public void setFaultyCheck(int faultyCheck) {
-		this.faultyCheck = faultyCheck;
-	}
 	
 	
 }

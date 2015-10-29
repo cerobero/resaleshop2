@@ -42,11 +42,9 @@ public class FaultyService {
 
 		faulty.setAccDate(accDate);
 		faulty.setAccId(accUser.getUserId());
-		faulty.setAccName(accUser.getUserName());
-		faulty.setAccPhone(accUser.getUserPhone());
 		faulty.setArticleNo(accArticle.getArticleNo());
-		int faultyCheck = (faulty.getFaultyCheck()) + 1;
-		faulty.setFaultyCheck(faultyCheck);
+		int faultyCheck = (accArticle.getFaultyCheck()) + 1;
+		accArticle.setFaultyCheck(faultyCheck);
 
 		if (faultydao.write(faulty) > 0) {
 			return true;
@@ -57,9 +55,7 @@ public class FaultyService {
 
 	public boolean rewriteFaulty(Faulty faulty) {
 		Faulty original = faultydao.read(faulty.getFaultyNo());
-		if (original.getFaultyNo() == faulty.getFaultyNo()&&original.getAccId().equals(faulty.getAccId())&&
-				original.getAccName().equals(faulty.getAccName())&&original.getAccPhone().equals(faulty.getAccPhone())
-				&& original.getAccEmail().equals(faulty.getAccEmail())) {
+		if (original.getFaultyNo() == faulty.getFaultyNo()&&original.getAccId().equals(faulty.getAccId())) {
 			faultydao.reWrite(faulty);
 			return true;
 		} else {
@@ -70,10 +66,7 @@ public class FaultyService {
 	public boolean deleteFaulty(int faultyNo,int accUserNum) {
 		Faulty testfaulty=faultydao.read(faultyNo);
 		User testuser=userdao.select(accUserNum);
-		if (faultydao.cancel(faultyNo) > 0 && testfaulty.getAccId().equals(testuser.getUserId())
-				&& testfaulty.getAccName().equals(testuser.getUserName())
-					&& testfaulty.getAccPhone().equals(testuser.getUserPhone())
-						&& testfaulty.getAccEmail().equals(testuser.getUserEmail())) {
+		if (faultydao.cancel(faultyNo) > 0 && testfaulty.getAccId().equals(testuser.getUserId())) {
 			return true;
 		} else {
 			return false;

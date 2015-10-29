@@ -6,19 +6,16 @@
 		<result column="ARTICLE_NO" property="articleNo"/>
 		<result column="PHOTO" property="photo"/>
 		<result column="ACCUSER_ID" property="accId"/>
-		<result column="ACCUSER_NAME" property="accName"/>
-		<result column="ACCUSER_PHONE" property="accPhone"/>
-		<result column="ACCUSER_EMAIL" property="accEmail"/>
 		<result column="ACCUSATION_DATE" property="accDate"/>
 		<result column="ACCUSATION_TITLE" property="accTitle"/>
 		<result column="ACCUSATION_CONTENT" property="accContent"/>
-		<result column="FAULTY_CHECK" property="faultyCheck"/>
+	
 	</resultMap>
 	
 	<!-- 입력 -->
 	<insert id="writeFaulty" parameterType="Faulty" useGeneratedKeys="true" keyColumn="FAULTY_NO" keyProperty="faultyNo">
-		INSERT INTO FAULTY(ARTICLE_NO,PHOTO,ACCUSER_ID,ACCUSER_NAME,ACCUSER_PHONE,ACCUSER_EMAIL,ACCUSATION_DATE,ACCUSATION_TITLE,ACCUSATION_CONTENT,FAULTY_CHECK)
-			VALUES(#{articleNo},#{photo},#{accId},#{accName},#{accPhone},#{accEmail},#{accDate},#{accTitle},#{accContent},#{faultyCheck})
+		INSERT INTO FAULTY(ARTICLE_NO,PHOTO,ACCUSER_ID,ACCUSATION_TITLE,ACCUSATION_CONTENT)
+			VALUES(#{articleNo},#{photo},#{accId},#{accDate},#{accTitle},#{accContent})
 	</insert>
 	<!-- 한 상품 아티클 내의 불량신고 검색 -->
 	<select id="selectArticleFaulty" parameterType="Integer" resultMap="resultFaulty">
