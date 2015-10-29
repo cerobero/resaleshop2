@@ -22,7 +22,7 @@ public class RegisterController
 		this.service = service;
 	}
 	
-	@RequestMapping(value="register", method=RequestMethod.GET)
+	@RequestMapping(value="register.do", method=RequestMethod.GET)
 	public ModelAndView getRegister()
 	{
 		ModelAndView modelAndView = null;
@@ -32,26 +32,26 @@ public class RegisterController
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="register", method=RequestMethod.POST)
+	@RequestMapping(value="register.do", method=RequestMethod.POST)
 	public ModelAndView postRegister(RedirectAttributes redirectAttributes, User user)
 	{
 		ModelAndView modelAndView = null;
 		
 		if (service.registerUser(user))
 		{
-			modelAndView = new ModelAndView("redirect:registerDone");
+			modelAndView = new ModelAndView("redirect:registerDone.do");
 			redirectAttributes.addFlashAttribute("redirected", Boolean.TRUE);
 		}
 		else
 		{
-			modelAndView = new ModelAndView("redirect:register");
+			modelAndView = new ModelAndView("redirect:register.do");
 			redirectAttributes.addFlashAttribute("errMsg", "입력값이 올바르지 않습니다.");
 		}
 		
 		return modelAndView;
 	}
 	
-	@RequestMapping("registerDone")
+	@RequestMapping("registerDone.do")
 	public ModelAndView serviceRegisterDone(Model model)
 	{
 		ModelAndView modelAndView = null;
@@ -69,7 +69,7 @@ public class RegisterController
 		}
 		else
 		{
-			modelAndView = new ModelAndView("redirect:/");
+			modelAndView = new ModelAndView("redirect:index.do");
 		}
 		
 		return modelAndView;

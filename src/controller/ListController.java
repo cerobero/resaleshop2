@@ -19,10 +19,10 @@ public class ListController
 		this.service = service;
 	}
 	
-	@RequestMapping("list")
+	@RequestMapping("list.do")
 	public ModelAndView serviceList(@RequestParam(defaultValue="") String view,
 									@RequestParam(defaultValue="") String search,
-									@RequestParam(defaultValue="1") int categoryId,
+									@RequestParam(defaultValue="0") int categoryId,
 									@RequestParam(defaultValue="1") int page)
 	{
 		ModelAndView modelAndView = new ModelAndView("category");

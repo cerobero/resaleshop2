@@ -39,7 +39,7 @@
     
     <!--  Register form -->
     <div class="container">
-	    <form class="form-horizontal" action="register" method="POST" name="submitForm">
+	    <form class="form-horizontal" action="register.do" method="POST" name="submitForm">
 		  <fieldset>
 		    <div id="legend">
 		      <h1 class="page-header">회원가입</h1>

@@ -98,7 +98,7 @@
 						</a>
 						<h3>
 							<a class="abbreviation"
-								href="itemInfo?type=read&articleNo=${article.articleNo }&view=${param.view }&categoryId=${param.categoryId }&page=${param.page }&search=${param.search }">${article.title }</a>
+								href="read.do?articleNo=${article.articleNo }&view=${param.view }&categoryId=${param.categoryId }&page=${param.page }&search=${param.search }">${article.title }</a>
 						</h3>
 						<p class="abbreviation">${article.content }</p>
 					</div>
@@ -116,7 +116,7 @@
 						</a>
 						<h3>
 							<a class="abbreviation"
-								href="itemInfo?type=read&articleNo=${article.articleNo }&view=${param.view }&categoryId=${param.categoryId }&page=${param.page }&search=${param.search }">${article.title }</a>
+								href="read.do?articleNo=${article.articleNo }&view=${param.view }&categoryId=${param.categoryId }&page=${param.page }&search=${param.search }">${article.title }</a>
 						</h3>
 						<p class="abbreviation">${article.content }</p>
 					</div>
@@ -132,7 +132,7 @@
 						<c:if
 							test="${articlePage.currentPage != articlePage.startPage }">
 							<li><a
-								href="list?view=${param.view }&categoryId=${param.categoryId }&page=${articlePage.currentPage - 1 }&search=${param.search }">&laquo;</a>
+								href="list.do?view=${param.view }&categoryId=${param.categoryId }&page=${articlePage.currentPage - 1 }&search=${param.search }">&laquo;</a>
 							</li>
 						</c:if>
 						<c:forEach var="num"
@@ -141,12 +141,12 @@
 							<c:choose>
 								<c:when test="${articlePage.currentPage == num }">
 									<li><a class="btn-primary active disabled"
-										href="list?view=${param.view }&categoryId=${param.categoryId }&page=${num }&search=${param.search }">${num }</a>
+										href="list.do?view=${param.view }&categoryId=${param.categoryId }&page=${num }&search=${param.search }">${num }</a>
 									</li>
 								</c:when>
 								<c:otherwise>
 									<li><a
-										href="list?view=${param.view }&categoryId=${param.categoryId }&page=${num }&search=${param.search }">${num }</a>
+										href="list.do?view=${param.view }&categoryId=${param.categoryId }&page=${num }&search=${param.search }">${num }</a>
 									</li>
 								</c:otherwise>
 							</c:choose>
@@ -154,7 +154,7 @@
 						<c:if
 							test="${articlePage.currentPage != articlePage.endPage }">
 							<li><a
-								href="list?view=${param.view }&categoryId=${param.categoryId }&page=${articlePage.currentPage + 1 }&search=${param.search }">&raquo;</a>
+								href="list.do?view=${param.view }&categoryId=${param.categoryId }&page=${articlePage.currentPage + 1 }&search=${param.search }">&raquo;</a>
 							</li>
 						</c:if>
 					</ul>
@@ -163,7 +163,7 @@
 		</c:if>
 
 			<div class="row">
-				<form class="input-form" role="search" action="list" method="get">
+				<form class="input-form" role="search" action="list.do" method="get">
 					<div class="col-lg-4 col-lg-offset-4">
 						<div class="input-group">
 							<input name="search" type="text" class="form-control"
