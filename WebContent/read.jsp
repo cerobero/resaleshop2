@@ -175,18 +175,18 @@ input[type=file] {
 			<div class="hero-unit">
 				<div id="legend" class="page-header">
 					<c:choose>
-						<c:when test="${requestScope.itemArticle.premiume==1}">
-							<h1 class="pull-left">[${requestScope.itemArticle.categoryName}]
-								${requestScope.itemArticle.title}&nbsp;&nbsp;프리미엄 상품</h1>
+						<c:when test="${readArticle.premiume==1}">
+							<h1 class="pull-left">[${readArticle.categoryName}]
+								${readArticle.title}&nbsp;&nbsp;프리미엄 상품</h1>
 						</c:when>
-						<c:when test="${requestScope.itemArticle.premiume==0}">
-							<h1 class="pull-left">[${requestScope.itemArticle.categoryName}]
-								${requestScope.itemArticle.title}</h1>
+						<c:when test="${readArticle.premiume==0}">
+							<h1 class="pull-left">[${readArticle.categoryName}]
+								${readArticle.itemArticle.title}</h1>
 						</c:when>
 					</c:choose>
 					<h1 class="pull-right">
-						<small>조회수 ${requestScope.itemArticle.readCount}&nbsp;|
-							등록일 ${requestScope.itemArticle.postingDate}</small>
+						<small>조회수 ${readArticle.readCount}&nbsp;|
+							등록일 ${readArticle.itemArticle.postingDate}</small>
 					</h1>
 					<div class="clearfix"></div>
 				</div>
@@ -204,17 +204,17 @@ input[type=file] {
 					<div class="controls">
 						<label class="control-label" for="price" style="width: 60px;">가격</label>
 						<input type="text" id="price" class="input-large" disabled
-							value="${requestScope.itemArticle.price}"> <label
+							value="${readArticle.price}"> <label
 							class="control-label" for="userid">아이디</label> <input type="text"
 							id="item" class="input-large" disabled
-							value="${requestScope.itemArticle.userId}"> <label
+							value="${readArticle.userId}"> <label
 							class="control-label" for="userid">판매여부</label>
 						<c:choose>
-							<c:when test="${requestScope.itemArticle.soldout == 1}">
+							<c:when test="${readArticle.soldout == 1}">
 								<input type="text" id="item" class="input-large" disabled
 									value="판매완료">
 							</c:when>
-							<c:when test="${requestScope.itemArticle.soldout == 0}">
+							<c:when test="${readArticle.soldout == 0}">
 								<input type="text" id="item" class="input-large" disabled
 									value="판매중">
 							</c:when>
@@ -237,16 +237,19 @@ input[type=file] {
 
 		<div class="control-group text-center">
 			<!-- Button -->
+			<!-- 이쪽은 아직 어떻게 할지 모르겠음 20151026 -->
 			<div class="controls" align="right">
 				<a href=""><button class="btn btn-success">구매</button></a>
+				<a href="gonggu.do"><button class="btn btn-success">공동구매</button></a>
 				<a href="list?view=${param.view }&categoryId=${param.categoryId }&page=${param.page }&search=${param.search }">
-					<button class="btn btn-success">글 목록</button>
+					<button class="btn btn-success">상품 목록</button>
 				</a>
-				<c:if test="${sessionScope.id == requestScope.itemArticle.userId }">
-					<a href="board?type=updateForm&articleNo=${requestScope.itemArticle.articleNo}">
+				<!-- 이쪽은 아직 어떻게 할지 모르겠음 20151026 -->
+				<c:if test="${sessionScope.id == readArticle.userId }">
+					<a href="board?type=updateForm&articleNo=${readArticle.articleNo}">
 						<button class="btn btn-success">글 수정</button>
 					</a>
-					<a href="login?cmd=del&articleNo=${requestScope.itemArticle.articleNo }">
+					<a href="login?cmd=del&articleNo=${readArticle.articleNo }">
 						<button class="btn btn-success">글 삭제</button>
 					</a>
 				</c:if>
@@ -267,10 +270,10 @@ input[type=file] {
 			<div class="row">
 				<div class="col-md-12">
                   <div class="page-header">
-                    <h1><small class="pull-right">${requestScope.commentList.size() }개의 댓글</small>댓글</h1>
+                    <h1><small class="pull-right">${commentList.size()}개의 댓글</small>댓글</h1>
                   </div> 
                    <div class="comments-list">
-					<c:forEach var="comment" items="${requestScope.commentList }">                  
+					<c:forEach var="comment" items="${commentList}">                  
                        <div class="media">
                            <p class="pull-right"><small>${comment.comment_Date }</small></p>
                             <div class="media-body">
@@ -278,20 +281,21 @@ input[type=file] {
                               <h4 class="media-heading user_name"><b>${comment.userId }</b></h4>
                               ${comment.content }
                             </div>
+                          	<div>
+                          		<a href="c_rewrite_form">[댓글 고치기]</a>
+                          		<a href="c_delete">[댓글 지우기]</a>
+                          	</div>
                           </div>
                     </c:forEach>
                    </div>
                    <br>
                    <c:if test="${not empty sessionScope.id }">
-					<form action="itemInfo" method="post">
+					<form action="c_write.do" method="post">
 						<div class="comments-insert">
-							<input type="hidden" id="categoryId" name="cateogryId" value="${param.categoryId }">
-							<input type="hidden" id="page" name="page" value="${param.page}">
-							<input type="hidden" id="search" name="search" value="${param.search}">
- 							<input type="hidden" id="commentcontent" name="commentcontent">
-							<input type="hidden" id="articleNo" name="articleNo" value="${requestScope.itemArticle.articleNo}">
-							<input type="hidden" id="content" name="content">
-							<input type="hidden" name="type" value="comment">
+							<input type="text" id="commentcontent" name="commentcontent" value="${comment.commentContent}">
+							<input type="hidden" id="articleNo" name="articleNo">
+							<input type="hidden" id="UserId" name="UserId" value="${sessionScope.id}">
+							<input type="hidden" name="commentDate" value="commentDate" value="${comment.commentDate}">
 							<%-- 					  <input type="hidden" id="userId" name="userId" value="${requestScope.itemArticle.userId}"> --%>
 							<p class="pull-right">
 								<button type="submit" onclick="test()">댓글등록</button>
@@ -303,7 +307,14 @@ input[type=file] {
 						</div>
 					</form>
 					</c:if>
-
+					
+					<c:if test="${readArticle.faultyCheck>0}">
+						<div>
+							<h2>불량신고가 있는 상품입니다!</h2>
+							<a href="f_list">[불량신고 보러 가기]</a>
+						</div>
+					</c:if>
+					
 				</div>
 			</div>
 		</div>
