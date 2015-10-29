@@ -20,7 +20,7 @@ public class FaultyController {
 		this.service = service;
 	}
 
-	@RequestMapping("f_list")
+	@RequestMapping("f_list.do")
 	public ModelAndView ArticleFaultyList(int articleNo) {
 		List<Faulty> faultylist = service.listFaulty(articleNo);
 		ModelAndView mv = new ModelAndView();
@@ -29,12 +29,12 @@ public class FaultyController {
 		return mv;
 	}
 
-	@RequestMapping(value = "write_form")
+	@RequestMapping(value = "write_form.do")
 	public String FaultyWriteForm() {
 		return "f_write_form";
 	}
 
-	@RequestMapping(value = "f_write", method = RequestMethod.POST)
+	@RequestMapping(value = "f_write.do", method = RequestMethod.POST)
 	public String FaultyWrite(Faulty faulty, int accUserNum, int articleNo) {
 		if (service.writeFaulty(faulty, accUserNum, articleNo)) {
 			return "f_write_success";
@@ -43,7 +43,7 @@ public class FaultyController {
 		}
 	}
 
-	@RequestMapping(value = "f_rerwite_form")
+	@RequestMapping(value = "f_rerwite_form.do")
 	public ModelAndView reWriteFaultyForm(int faultyNo) {
 		Faulty originalFaulty = service.readFaulty(faultyNo);
 		ModelAndView mv = new ModelAndView();
@@ -52,7 +52,7 @@ public class FaultyController {
 		return mv;
 	}
 
-	@RequestMapping(value = "f_rewrite")
+	@RequestMapping(value = "f_rewrite.do")
 	public String reWriteFaulty(Faulty faulty) {
 		if (service.rewriteFaulty(faulty)) {
 			return "f_rewrite_success";

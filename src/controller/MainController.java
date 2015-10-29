@@ -38,7 +38,7 @@ public class MainController {
 	
 
 	
-	@RequestMapping("index")
+	@RequestMapping("index.do")
 	public ModelAndView MainAllList(){
 		ArticlePage allNewPage=service.getMainArticlePage();
 		ArticlePage hotNewPage=service.getMainHotArticlePage();
@@ -51,7 +51,7 @@ public class MainController {
 		return mv;
 	}
 	
-	@RequestMapping("read")
+	@RequestMapping("read.do")
 	public ModelAndView selectView(int articleNo){
 		Article readArticle=service.readArticle(articleNo);
 		List<Comment> commentList=cservice.commentListView(articleNo);
