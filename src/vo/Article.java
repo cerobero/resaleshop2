@@ -2,6 +2,8 @@ package vo;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Article
 {
 	private int articleNo;
@@ -17,6 +19,7 @@ public class Article
 	private int soldout;
 	private int cnt;
 	private int faultyCheck;
+	private MultipartFile myfile;
 
 	public Article()
 	{
@@ -166,12 +169,20 @@ public class Article
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
-	
+
+	public MultipartFile getMyfile() {
+		return myfile;
+	}
+
+	public void setMyfile(MultipartFile myfile) {
+		this.myfile = myfile;
+	}
+
 	@Override
 	public String toString() {
 		return "Article [articleNo=" + articleNo + ", userId=" + userId + ", title=" + title + ", price=" + price
 				+ ", readCount=" + readCount + ", postingDate=" + postingDate + ", premium=" + premium + ", photo="
 				+ photo + ", categoryId=" + categoryId + ", content=" + content + ", soldout=" + soldout + ", faultyCheck"+faultyCheck+"]";
 	}
-	
+
 }

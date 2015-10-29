@@ -141,7 +141,7 @@ $('#target').submit(function() {
  	</script>
 	</c:if>
 	<div class="container">
-	<form class="form-group" action="write" method="POST" enctype="multipart/form-data">
+	<form class="form-group" action="writedone.do" method="POST" enctype="multipart/form-data">
 	  <div class="hero-unit">
 		<div id="legend">
 		  <h1 class="page-header">글쓰기</h1>
@@ -172,7 +172,7 @@ $('#target').submit(function() {
 				<input type="text" id="price" class="input-large" name="price">
 
 				<label class="control-label" for="photo">사진등록</label>
-				<input type="file" id="item" class="btn btn-default btn-file" name="photo">
+				<input type="file" id="item" class="btn btn-default btn-file" name="myfile">
 			</div>
 		</div>
 

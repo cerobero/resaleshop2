@@ -9,12 +9,14 @@
 
 	<context:annotation-config></context:annotation-config>
 	<context:component-scan base-package="controller"></context:component-scan>
-	
+
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="viewResolver">
 		<property name="prefix" value="/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
-	
+	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+	</bean>
+
 	<mvc:resources location="/resource/" mapping="/resource/**"></mvc:resources>
 	<mvc:annotation-driven></mvc:annotation-driven>
 </beans>
