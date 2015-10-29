@@ -23,7 +23,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index">중고(딩)나라</a>
+			<a class="navbar-brand" href="index.do">중고(딩)나라</a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"
@@ -57,21 +57,21 @@
 			</ul>
 			<!-- 		    	모바일 화면에서 보이는 메뉴 -->
 			<ul class="nav navbar-nav visible-xs">
-				<li><a href="list?categoryId=1">IT기기</a></li>
-				<li><a href="list?categoryId=2">가전제품</a></li>
-				<li><a href="list?categoryId=3">중고차</a></li>
-				<li><a href="list?categoryId=4">취미</a></li>
-				<li><a href="list?categoryId=5">의복</a></li>
+				<li><a href="list.do?categoryId=1">IT기기</a></li>
+				<li><a href="list.do?categoryId=2">가전제품</a></li>
+				<li><a href="list.do?categoryId=3">중고차</a></li>
+				<li><a href="list.do?categoryId=4">취미</a></li>
+				<li><a href="list.do?categoryId=5">의복</a></li>
 			</ul>
 		</div>
 		<div class="collapse navbar-collapse">
 			<!-- 	    		모바일 외의 화면에서 보이는 메뉴 -->
 			<ul class="nav navbar-nav">
-				<li><a href="list?categoryId=1">IT기기</a></li>
-				<li><a href="list?categoryId=2">가전제품</a></li>
-				<li><a href="list?categoryId=3">중고차</a></li>
-				<li><a href="list?categoryId=4">취미</a></li>
-				<li><a href="list?categoryId=5">의복</a></li>
+				<li><a href="list.do?categoryId=1">IT기기</a></li>
+				<li><a href="list.do?categoryId=2">가전제품</a></li>
+				<li><a href="list.do?categoryId=3">중고차</a></li>
+				<li><a href="list.do?categoryId=4">취미</a></li>
+				<li><a href="list.do?categoryId=5">의복</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
