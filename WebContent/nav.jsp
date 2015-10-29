@@ -46,7 +46,7 @@
 					<c:when test="${sessionScope.id != null }">
 						<li><a href="logout.do">로그아웃</a></li>
 						<li><a href="write.do">판매등록</a></li>
-						<li><a href="gongu.do">공동구매</a></li>
+						<li><a href="gonguView.do">공동구매</a></li>
 						<li><a href="mypage.do">마이페이지</a></li>
 					</c:when>
 					<c:otherwise>

@@ -294,10 +294,6 @@ input[type=file] {
 				<button type='button'  id="btn-tc" class="btn btn-primary" disabled="disabled" onClick="location.href='gongu.do'">구매</button>
 		</td>
 		<td>구매 버튼은 공구 시작시간에 활성화 되어, 종료시간에 비활성화 됩니다</td>
-		<script type="text/javascript">
- 			alert("${winMsg}");
- 		</script>
-		
         <td width="460" colspan="2">
 <br><br><br>
 

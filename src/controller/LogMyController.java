@@ -27,12 +27,12 @@ public class LogMyController {
 		this.service = service;
 	}
 
-	@RequestMapping("/login.do")
+	@RequestMapping("login.do")
 	public String loginForm() {
-		return "login.do";
+		return "login";
 	}
 
-	@RequestMapping("/loginCheck.do")
+	@RequestMapping("loginCheck.do")
 	public ModelAndView login(User user, HttpSession session) {
 		ModelAndView mv = null;
 		int ck = service.isLogin(user);
@@ -40,11 +40,11 @@ public class LogMyController {
 			session.setAttribute("id", user.getUserId());
 			session.setAttribute("pw", user.getUserPw());
 			session.setAttribute("age", user.getUserAge());
-			mv = new ModelAndView("index.do");
+			mv = new ModelAndView("index");
 		} else if (ck == 0) {
-			mv = new ModelAndView("err.do", "errMsg", "占쏙옙橘占싫� 占쌉력울옙占쏙옙");
+			mv = new ModelAndView("err", "errMsg", "占쏙옙橘占싫� 占쌉력울옙占쏙옙");
 		} else {
-			mv = new ModelAndView("err.do", "errMsg", "ID 占쌉력울옙占쏙옙");
+			mv = new ModelAndView("err", "errMsg", "ID 占쌉력울옙占쏙옙");
 		}
 		return mv;
 	}
@@ -54,10 +54,10 @@ public class LogMyController {
 		ModelAndView mv = null;
 		String userId = (String) session.getAttribute("id");
 		if (userId != null) {
-			mv = new ModelAndView("login.do");
+			mv = new ModelAndView("login");
 			session.invalidate();
 		} else {
-			mv = new ModelAndView("login.do", "errMsg", "占싸깍옙占쏙옙 占쏙옙 占싱울옙帽占쏙옙求占�.");
+			mv = new ModelAndView("login", "errMsg", "占싸깍옙占쏙옙 占쏙옙 占싱울옙帽占쏙옙求占�.");
 		}
 		return mv;
 	}
@@ -71,13 +71,13 @@ public class LogMyController {
 //			System.out.println(a);
 //		}
 		mv.addObject(articleList);
-		mv.setViewName("mypage.do");
+		mv.setViewName("mypage");
 		return mv;
 	}
 	
 	@RequestMapping("gonguView.do")
 	public String gonguView() {
-		return "gonguView.do";
+		return "gonguView";
 	}
 	
 	@RequestMapping("gongu.do")
@@ -85,9 +85,9 @@ public class LogMyController {
 		ModelAndView mv = new ModelAndView();
 		String userId = (String) session.getAttribute("id");
 		if (userId == null) {
-			mv = new ModelAndView("redirect: login.do");
+			mv = new ModelAndView("redirect: login");
 		} else {
-			mv = new ModelAndView("gongu.do", "winMsg", "공동구매 신청되었습니다");
+			mv = new ModelAndView("win", "winMsg", "공동구매 신청되었습니다!!!!!");
 			service.writeUser(userId);
 		}
 		return mv;
@@ -96,7 +96,7 @@ public class LogMyController {
 	@RequestMapping("winner.do")
 	public ModelAndView gonguList(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("gongu.do");
+		mv.setViewName("gongu");
 		return mv;
 	}
 

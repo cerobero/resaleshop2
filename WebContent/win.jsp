@@ -6,8 +6,8 @@
 	</head>
 	<body>
 		<script type="text/javascript">
- 			alert("${errMsg}");
- 	 		location.href="login.do";
+ 			alert("${winMsg}");
+ 	 		location.href="gonguView.do";
  	 		</script>
 	</body>
 </html>
