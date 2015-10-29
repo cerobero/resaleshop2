@@ -35,7 +35,7 @@ public class CommentController {
 		return "c_write_form";
 	}*/
 
-	@RequestMapping(value = "c_write", method = RequestMethod.POST)
+	@RequestMapping(value = "c_write.do", method = RequestMethod.POST)
 	public String CommentWrite(Comment comment) {
 		if (service.writeComment(comment)) {
 			return "c_write_success";
@@ -44,7 +44,7 @@ public class CommentController {
 		}
 	}
 
-	@RequestMapping(value = "rewrite_form")
+	@RequestMapping(value = "rewrite_form.do")
 	public ModelAndView reWriteCommentForm(int commentNo) {
 		Comment originalComment = service.readComment(commentNo);
 		ModelAndView mv = new ModelAndView();
@@ -53,7 +53,7 @@ public class CommentController {
 		return mv;
 	}
 
-	@RequestMapping(value = "c_rewrite")
+	@RequestMapping(value = "c_rewrite.do")
 	public String reWriteComment(int commentNo, String commentContent) {
 		if (service.reWriteComment(commentNo, commentContent)) {
 			return "c_rewrite_scuccess";
@@ -62,7 +62,7 @@ public class CommentController {
 		}
 	}
 
-	@RequestMapping(value="c_delete")
+	@RequestMapping(value="c_delete.do")
 	public String deleteComment(int commentNo) {
 		if (service.deleteComment(commentNo)) {
 			return "c_delete_success";

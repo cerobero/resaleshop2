@@ -84,7 +84,7 @@
 	</select>
 	
 	<select id="selectMainArticleListPremium" parameterType="Map" resultMap="resultArticle">
-		SELECT * FROM ARTICLE WHERE PREMIUM=1 AND ORDER BY ARTICLE_NO DESC LIMIT #{startIndex}, #{numOfIndex}
+		SELECT * FROM ARTICLE WHERE PREMIUM=1 ORDER BY ARTICLE_NO DESC LIMIT #{startIndex}, #{numOfIndex}
 	</select>
 	
 	

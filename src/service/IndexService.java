@@ -27,20 +27,17 @@ public class IndexService {
 			return new ArticlePage();
 		}
 
-		int startIndex = articleTotalCount - 4;
+		
 
-		if (startIndex <= 0)
-			startIndex = 1;
-
-		List<Article> MainAllArticleList = dao.selectAllMainArticle(startIndex, CPP);
+		List<Article> MainAllArticleList = dao.selectAllMainArticle(0, CPP);
 
 		int totalPageEndPage = articleTotalCount / CPP;
 
 		if (articleTotalCount % CPP != 0) {
 			totalPageEndPage++;
 		}
-
-		return new ArticlePage(MainAllArticleList, totalPageEndPage, totalPageEndPage, totalPageEndPage,
+		
+		return new ArticlePage(MainAllArticleList,totalPageEndPage, totalPageEndPage, totalPageEndPage,
 				totalPageEndPage);
 
 	}
@@ -54,19 +51,16 @@ public class IndexService {
 			return new ArticlePage();
 		}
 
-		int startIndex = articleTotalCount - 4;
-
-		if (startIndex <= 0)
-			startIndex = 1;
-
-		List<Article> MainHotArticleList = dao.selectHotMainArticle(startIndex, CPP);
+		
+	
+		List<Article> MainHotArticleList = dao.selectHotMainArticle(0, CPP);
 
 		int totalPageEndPage = articleTotalCount / CPP;
 
 		if (articleTotalCount % CPP != 0) {
 			totalPageEndPage++;
 		}
-
+		System.out.println("MainHotArticle="+totalPageEndPage);
 		return new ArticlePage(MainHotArticleList, totalPageEndPage, totalPageEndPage, totalPageEndPage,
 				totalPageEndPage);
 
@@ -81,19 +75,16 @@ public class IndexService {
 			return new ArticlePage();
 		}
 
-		int startIndex = articleTotalCount - 4;
+	
 
-		if (startIndex <= 0)
-			startIndex = 1;
-
-		List<Article> MainPremiumArticleList = dao.selectPremiumMainArticle(startIndex, CPP);
+		List<Article> MainPremiumArticleList = dao.selectPremiumMainArticle(0, CPP);
 
 		int totalPageEndPage = articleTotalCount / CPP;
 
 		if (articleTotalCount % CPP != 0) {
 			totalPageEndPage++;
 		}
-
+		System.out.println("MainPremiumArticle="+totalPageEndPage);
 		return new ArticlePage(MainPremiumArticleList, totalPageEndPage, totalPageEndPage, totalPageEndPage,
 				totalPageEndPage);
 
