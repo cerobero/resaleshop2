@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import repository.LogMyDao;
 import service.LogMyService;
 import vo.Article;
+import vo.JointPurchase;
 import vo.User;
 
 @Controller
@@ -83,7 +84,7 @@ public class LogMyController {
 	
 	@RequestMapping("gongu.do")
  	public ModelAndView gongu(HttpSession session) {
- 		ModelAndView mv = new ModelAndView();
+ 		ModelAndView mv =null;
 		String userId = (String) session.getAttribute("id");
 		if (userId == null) {
 			mv = new ModelAndView("redirect: login.do");
@@ -99,18 +100,16 @@ public class LogMyController {
 	}
 
 	@RequestMapping("winner.do")
-	public ModelAndView gonguList(HttpSession session) {
+	public ModelAndView winnerList() {
 		ModelAndView mv = new ModelAndView();
-//		String userId = (String) session.getAttribute("id");
-//		List<Article> gonguList = service.myPage(userId);
-//		mv.addObject(gonguList);
- 		mv.setViewName("gongu");
- 		return mv;
- 	}
+		List<JointPurchase> winnerList = service.winnerList();
+		mv.addObject(winnerList);
+		mv.setViewName("gonguView");
+		return mv;
+	}
 
 	@RequestMapping("soldout.do")
 	public String soldOut(int articleNo) {
-//		int articleNo = article.getArticleNo();
 		service.soldout(articleNo);
 		return "redirect: mypage.do";
 	}

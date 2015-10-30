@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import repository.LogMyDao;
 import vo.Article;
+import vo.JointPurchase;
 import vo.User;
 
 @Component
@@ -58,5 +59,9 @@ public class LogMyService {
 		} catch (Exception e) {
 		}
 		return 0;
+	}
+
+	public List<JointPurchase> winnerList() {
+		return dao.winnerList();
 	}
 }

@@ -67,8 +67,11 @@ public class JointPurchase {
 	public void setAwaiter(int awaiter) {
 		this.awaiter = awaiter;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "JointPurchase [order_no=" + order_no + ", user_id=" + user_id + ", paid=" + paid + ", sended=" + sended
+				+ ", winner=" + winner + ", awaiter=" + awaiter + "]";
+	}
 }
 	

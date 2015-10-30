@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html lang="en">
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
+<html lang="ko">
 
 <head>
-
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,8 +39,8 @@
 
 <link rel="apple-touch-icon"
 	href="//mindmup.s3.amazonaws.com/lib/img/apple-touch-icon.png" />
-<link rel="shortcut icon"
-	href="http://mindmup.s3.amazonaws.com/lib/img/favicon.ico">
+<!-- <link rel="shortcut icon" -->
+<!-- 	href="http://mindmup.s3.amazonaws.com/lib/img/favicon.ico"> -->
 <link
 	href="resource/bootstrap-wysiwyg-master/external/google-code-prettify/prettify.css"
 	rel="stylesheet">
@@ -294,22 +293,25 @@ input[type=file] {
 				<button type='button'  id="btn-tc" class="btn btn-primary" disabled="disabled" onClick="location.href='gongu.do'">구매</button>
 		</td>
 		<td>구매 버튼은 공구 시작시간에 활성화 되어, 종료시간에 비활성화 됩니다</td>
+		
         <td width="460" colspan="2">
-<br><br><br>
 
 </td>
     </tr>
 <tr>
 <td colspan="2">
+<!-- <a href="winner.do">⊙ 신청자 기록 보기</a> -->
+<%-- 	<c:forEach var="winner" items="${winnerList}"> --%>
+<%-- <td>${winner.order_no}</td> --%>
+<%-- <td>${winner.user_id}</td> --%>
+<%--  	</c:forEach> --%>
 
-
-<a href="skin/09main/member_09.php?b_no=-2065&sp=162923&subject=라온티앤아이 타무즈 스톤 X-10 게이밍 마우스" onClick="return show_hide_abox(this,800,4962,'10px solid')">⊙ 신청자 기록 보기</a>
-
-<br><br><font color=red>*</font> 특가 재판매 관련<br>
+<font color=red>*</font> 특가 재판매 관련<br>
 <font color=red>*수령지 미기재 신청 안됨 / 자진취소자 3개월 / 가입제한 3일</font>
 </td>
 </tr>
 </table>
+
 <hr align="left">
 * 중고(딩)나라 특가 진행은 별도의 수수료 없이 진행되는 특가입니다. <br>
 * 중고(딩)나라는 회원분들에게 직접적으로 입금 받지 않습니다. 입금은 진행업체 계좌로 처리됩니다.<br>
@@ -318,16 +320,22 @@ input[type=file] {
 * 중고(딩)나라는 특가는 개인 회원만을 위한 특가 입니다. 사업자는 참여 할 수 없습니다.<br>
 * 비정상적인 방법으로 특가 시도 및 신청시 해당 유저는 제재 또는 영구제재 처리됩니다. <br>
 <hr><br><br>
-               <div align="center" >
-                    <h2>★ 공식 DB 리뷰 ★ </h2><br><br>
+						<div align="center">
+							<h2>★ 공식 DB 리뷰 ★</h2>
+							<br>
+							<br>
 
-<h4>라온티앤아이 타무즈 스톤 X-10 게이밍 마우스 <br>
-http://prod.danawa.com/info/?pcode=3472265</h4>
-<h4>★ 리뷰 ★<br> 
-▶ 제목: 돌 굴러가유~ TAMMUZ STONE-X10 Mouse 리뷰<br>
-▶ 링크: http://www.coolenjoy.net/bbs/boardc.php?board=review&no=29093</h4>
-</div>                    
-               <img src="resource/img/tm.jpg">
+							<h4>
+								라온티앤아이 타무즈 스톤 X-10 게이밍 마우스 <br>
+								http://prod.danawa.com/info/?pcode=3472265
+							</h4>
+							<h4>
+								★ 리뷰 ★<br> ▶ 제목: 돌 굴러가유~ TAMMUZ STONE-X10 Mouse 리뷰<br>
+								▶ 링크:
+								http://www.coolenjoy.net/bbs/boardc.php?board=review&no=29093
+							</h4>
+						</div>
+						<img src="resource/img/tm.jpg">
                     
                 </div>
             </div>

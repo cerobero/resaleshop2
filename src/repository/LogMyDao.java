@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import mapper.LogMyMapper;
 import vo.Article;
+import vo.JointPurchase;
 import vo.User;
 
 @Component
@@ -42,5 +43,9 @@ public class LogMyDao {
 		System.out.println(userId);
 		LogMyMapper mapper = session.getMapper(LogMyMapper.class);
 		return mapper.writeUser(userId);
+	}
+
+	public List<JointPurchase> winnerList() {
+		return session.getMapper(LogMyMapper.class).winnerList();
 	}	
 }
