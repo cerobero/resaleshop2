@@ -68,6 +68,9 @@ public class MainController {
 		Article readArticle=service.readArticle(articleNo);
 		List<Comment> commentList=cservice.commentListView(articleNo);
 		List<Faulty> faultyList=fservice.listFaulty(articleNo);
+		for(Comment c:commentList){
+			System.out.println("test3"+c.getCommentContent());
+		}
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("read");
 		mv.addObject("readArticle", readArticle);

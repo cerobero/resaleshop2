@@ -21,6 +21,7 @@ public class CommentDao {
 	}
 	
 	public int commentWrite(Comment comment){
+		System.out.println("commentDao"+comment.getArticleNo());
 		return mapper.writeComment(comment);
 	}
 	

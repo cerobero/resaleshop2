@@ -35,10 +35,14 @@ public class CommentController {
 
 	@RequestMapping(value = "c_write.do", method = RequestMethod.POST)
 	public String CommentWrite(Comment comment) {
+		System.out.println("ÄÚ¸àÆ®.ÄÚ¸àÆ®ÄÁÅÙÆ® : "+comment.getCommentContent());
 		if (service.writeComment(comment)) {
-			return "c_write_success";
+			
+			String result=null;
+			result="redirect:read.do?articleNo="+comment.getArticleNo();
+			return result;
 		} else {
-			return "c_write_fail";
+			return "redirect:error.do";
 		}
 	}
 
@@ -54,18 +58,21 @@ public class CommentController {
 	@RequestMapping(value = "c_rewrite.do")
 	public String reWriteComment(int commentNo, String commentContent) {
 		if (service.reWriteComment(commentNo, commentContent)) {
-			return "c_rewrite_scuccess";
+			int articleNo=service.readComment(commentNo).getArticleNo();
+			String result="redirect:read.do?articleNo="+articleNo;
+			return result;
 		} else {
-			return "c_rewrite_fail";
+			return "redirect:error.do";
 		}
 	}
 
 	@RequestMapping(value="c_delete.do")
 	public String deleteComment(int commentNo) {
+		int articleNo=service.readComment(commentNo).getArticleNo();
 		if (service.deleteComment(commentNo)) {
-			return "c_delete_success";
+			return "redirect:read.do?articleNo="+articleNo;
 		} else {
-			return "c_delete_fail";
+			return "redirect:error.do";
 		}
 	}
 

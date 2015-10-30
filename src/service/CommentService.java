@@ -21,6 +21,7 @@ public class CommentService {
 	public boolean writeComment(Comment comment) {
 		Date commentDate = new Date();
 		comment.setCommentDate(commentDate);
+		System.out.println("test commentService");
 		if (dao.commentWrite(comment) > 0) {
 			return true;
 		} else {
