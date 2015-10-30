@@ -48,7 +48,14 @@ public class MainController {
 
 	@RequestMapping("index.do")
 	public ModelAndView MainAllList(){
+		int teenArticleNo = i_service.selectTeenMostClick();
+		int twentyArticleNo = i_service.selectTwentyMostClick();
+		int thirtyArticleNo = i_service.selectThirtyMostClick();
 		ArticlePage allNewPage=service.getMainArticlePage();
+		Article readTeenArticle=service.readArticle(teenArticleNo);
+		Article readTwentyArticle=service.readArticle(twentyArticleNo);
+		Article readThirtyArticle=service.readArticle(thirtyArticleNo);
+
 		ArticlePage hotNewPage=service.getMainHotArticlePage();
 		ArticlePage premiumNewPage=service.getMainPremiumArticlePage();
 		ModelAndView mv = new ModelAndView();
@@ -56,6 +63,9 @@ public class MainController {
 		mv.addObject("allNewPage",allNewPage);
 		mv.addObject("hotNewPage",hotNewPage);
 		mv.addObject("premiumNewPage",premiumNewPage);
+		mv.addObject("readTeenArticle", readTeenArticle);
+		mv.addObject("readTwentyArticle", readTwentyArticle);
+		mv.addObject("readThirtyArticle", readThirtyArticle);
 		return mv;
 	}
 
@@ -68,10 +78,6 @@ public class MainController {
 		Article readArticle=service.readArticle(articleNo);
 		List<Comment> commentList=cservice.commentListView(articleNo);
 		List<Faulty> faultyList=fservice.listFaulty(articleNo);
-		for(Comment c:commentList){
-			System.out.println("test3"+c.getCommentContent());
-			System.out.println("commentNo"+c.getCommentNo());
-		}
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("read");
 		mv.addObject("readArticle", readArticle);

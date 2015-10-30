@@ -15,12 +15,28 @@ public class insertService {
 	public void setDao(IsertDao dao) {
 		this.dao = dao;
 	}
+
 	public boolean insertMostClick(Click click) {
-		if (dao.insertMostClick(click)>0) {
+		if (dao.insertMostClick(click) > 0) {
 			return true;
 		} else {
 			return false;
 		}
+	}
+
+	public int selectTeenMostClick() {
+
+		return dao.selectTeenMostClick();
+	}
+
+	public int selectTwentyMostClick() {
+
+		return dao.selectTwentyMostClick();
+	}
+
+	public int selectThirtyMostClick() {
+
+		return dao.selectThirtyMostClick();
 	}
 
 }

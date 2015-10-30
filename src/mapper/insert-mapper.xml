@@ -5,6 +5,16 @@
 	<insert id="insertMostClick" parameterType="Click">
 	insert into mostclick(article_no,user_age)values(#{article_no},#{user_age})
 	</insert>
+	<select id="selectTeenMostClick"  resultType="Integer">
+	select article_no from(select article_no, floor(user_age/10) as u_age from mostclick) a group by article_no, u_age having u_age=1 order by count(*) DESC limit 0,1;
 
+	</select>
+	<select id="selectTwentyMostClick"  resultType="Integer">
+	select article_no from(select article_no, floor(user_age/10) as u_age from mostclick) a group by article_no, u_age having u_age=2 order by count(*) DESC limit 0,1;
 
+	</select>
+	<select id="selectThirtyMostClick"  resultType="Integer">
+	select article_no from(select article_no, floor(user_age/10) as u_age from mostclick) a group by article_no, u_age having u_age=3 order by count(*) DESC limit 0,1;
+
+	</select>
 </mapper>

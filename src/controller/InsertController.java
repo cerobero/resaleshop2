@@ -44,7 +44,8 @@ public class InsertController {
 		System.out.println(article);
 		System.out.println(article.getMyfile());
 		if (article.getMyfile()!= null) {
-			String folderPath = "c:/uploaded_file";
+
+			String folderPath = "/upload";
 			File dir = new File(folderPath);
 			System.out.println("2");
 			if (dir.exists() == false){

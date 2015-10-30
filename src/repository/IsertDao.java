@@ -22,6 +22,14 @@ public class IsertDao {
 	public int insertMostClick(Click click){
 		return session.getMapper(InsertMapper.class).insertMostClick(click);
 	}
-
+	public int selectTeenMostClick(){
+		return session.getMapper(InsertMapper.class).selectTeenMostClick();
+	}
+	public int selectTwentyMostClick(){
+		return session.getMapper(InsertMapper.class).selectTwentyMostClick();
+	}
+	public int selectThirtyMostClick(){
+		return session.getMapper(InsertMapper.class).selectThirtyMostClick();
+	}
 
 }

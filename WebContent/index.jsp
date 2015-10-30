@@ -129,17 +129,20 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h3 class="page-header">
-					<a href="">젊은 우리의 특별 관심상품!</a>
+					<a href="read.do?articleNo=${readTeenArticle.articleNo}"> <img
+							class="img-responsive" src="${readTeenArticle.photo}" alt="">10대가 많이 본 계시물!</a>
 				</h3>
 			</div>
 			<div class="col-lg-12">
 				<h3 class="page-header">
-					<a href="">아이들은 가라! 중년들을 위한 특별 관심상품!</a>
+					<a href="read.do?articleNo=${readTwentyArticle.articleNo}"> <img
+							class="img-responsive" src="${readTwentyArticle.photo}" alt="">20대가 많이 본 계시물!</a>
 				</h3>
 			</div>
 			<div class="col-lg-12">
 				<h3 class="page-header">
-					<a href="">지금이 청춘인 어르신들을 위한 특별 관심상품 </a>
+					<a href="read.do?articleNo=${readTirtyArticle.articleNo}"> <img
+							class="img-responsive" src="${readThirtyArticle.photo}" alt="">30대가 많이 본 계시물!</a>
 				</h3>
 			</div>
 		</div>

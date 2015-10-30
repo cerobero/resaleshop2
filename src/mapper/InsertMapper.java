@@ -10,5 +10,9 @@ public interface InsertMapper
 
 {
 	public int insertMostClick(Click click);
+	public int selectTeenMostClick();
+	public int selectTwentyMostClick();
+	public int selectThirtyMostClick();
+
 
 }
