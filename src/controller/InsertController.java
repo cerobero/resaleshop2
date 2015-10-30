@@ -54,17 +54,17 @@ public class InsertController {
 			File savedFile = new File(filePath);
 			System.out.println("3");
 			try {
-//				System.out.println("4����� ������");
+//				System.out.println("4占쏙옙占쏙옙占� 占쏙옙占쏙옙占쏙옙");
 //				System.out.println(article);
 //				System.out.println(article.getMyfile());
-				article.getMyfile().transferTo(savedFile);// ���ε� ����
+				article.getMyfile().transferTo(savedFile);// 占쏙옙占싸듸옙 占쏙옙占쏙옙
 
 
 
 				article.setPhoto(savedFile.getAbsolutePath());
 				String result;
 				if(service.insertArticle(article)){
-					System.out.println("���ε� �Ϸ��.");
+//					System.out.println("占쏙옙占싸듸옙 占싹뤄옙占�.");
 					result = "redirect:index.do";
 				} else {
 					result = "redirect:error.do";

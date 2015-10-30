@@ -36,14 +36,17 @@ public class LogMyController {
 	@RequestMapping("loginCheck.do")
 	public ModelAndView login(User user, HttpSession session) {
 		ModelAndView mv = null;
-		int ck = service.isLogin(user);
-		if (ck == 1) {
-			session.setAttribute("id", user.getUserId());
-			session.setAttribute("pw", user.getUserPw());
-			session.setAttribute("age", user.getUserAge());
-			mv = new ModelAndView("index");
-		} else if (ck == 0) {
-			mv = new ModelAndView("err", "errMsg", "비밀번호 오류");
+		User lgUser = service.isLogin(user);
+		if (lgUser != null) {
+			String gpw = lgUser.getUserPw();
+			if (user.getUserPw().equals(gpw)) {
+				session.setAttribute("id", lgUser.getUserId());
+				session.setAttribute("pw", lgUser.getUserPw());
+				session.setAttribute("age", lgUser.getUserAge());
+				mv = new ModelAndView("index");
+			} else {
+				mv = new ModelAndView("err", "errMsg", "패스워드 입력 오류");
+			}
 		} else {
 			mv = new ModelAndView("err", "errMsg", "ID 입력 오류");
 		}
@@ -68,9 +71,6 @@ public class LogMyController {
 		ModelAndView mv = new ModelAndView();
 		String userId = (String) session.getAttribute("id");
 		List<Article> articleList = service.myPage(userId);
-//		for(Article a: articleList){
-//			System.out.println(a);
-//		}
 		mv.addObject(articleList);
 		mv.setViewName("mypage");
 		return mv;
