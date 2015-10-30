@@ -185,12 +185,10 @@ input[type=file] {
 						</c:when>
 					</c:choose>
 					<h1 class="pull-right">
-						<small>조회수 ${readArticle.readCount}&nbsp;|
-							등록일 ${readArticle.postingDate}</small>
+						<small>조회수 ${readArticle.readCount}&nbsp;| 등록일
+							${readArticle.postingDate}</small>
 					</h1>
-					<div class="clearfix">
-					
-					</div>
+					<div class="clearfix"></div>
 				</div>
 
 				<!---
@@ -228,7 +226,7 @@ input[type=file] {
 
 				<!-- 		<textarea class="form-control" rows="10"> -->
 				<div>
-				 <img src="${readArticle.photo}"><br> 
+					<img src="${readArticle.photo}"><br>
 					${readArticle.content}
 				</div>
 				<!-- 		</textarea> -->
@@ -241,82 +239,85 @@ input[type=file] {
 			<!-- Button -->
 			<!-- 이쪽은 아직 어떻게 할지 모르겠음 20151026 -->
 			<div class="controls" align="right">
-				<a href=""><button class="btn btn-success">구매</button></a>
-				<a href="gonggu.do"><button class="btn btn-success">공동구매</button></a>
-				<a href="list?view=${param.view }&categoryId=${param.categoryId }&page=${param.page }&search=${param.search }">
+				<a href=""><button class="btn btn-success">구매</button></a> <a
+					href="gonggu.do"><button class="btn btn-success">공동구매</button></a>
+				<a
+					href="list?view=${param.view }&categoryId=${param.categoryId }&page=${param.page }&search=${param.search }">
 					<button class="btn btn-success">상품 목록</button>
 				</a>
-				
+
 				<%-- <c:if test="${sessionScope.id == readArticle.userId }"> --%>
-					<a href="a_update_form.do?articleNo=${readArticle.articleNo}">
-						<button class="btn btn-success">글 수정</button>
-					</a>
-					<a href="a_delete.do?articleNo=${readArticle.articleNo }">
-						<button class="btn btn-success">글 삭제</button>
-					</a>
+				<a href="a_update_form.do?articleNo=${readArticle.articleNo}">
+					<button class="btn btn-success">글 수정</button>
+				</a> <a href="a_delete.do?articleNo=${readArticle.articleNo }">
+					<button class="btn btn-success">글 삭제</button>
+				</a>
 				<%-- </c:if> --%>
 			</div>
 		</div>
 
 		<div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    
-                    
-                    
-                </div>
-            </div>
-        </div>
+			<div class="row">
+				<div class="col-md-12"></div>
+			</div>
+		</div>
 
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-                  <div class="page-header">
-                    <h1><small class="pull-right">${commentList.size()}개의 댓글</small>댓글</h1>
-                  </div> 
-                   <div class="comments-list">
-					<c:forEach var="comment" items="${commentList}">                  
-                       <div class="media">
-                           <p class="pull-right"><small>${comment.commentDate }</small></p>
-                            <div class="media-body">
-                                
-                              <h4 class="media-heading user_name"><b>${comment.userId }</b></h4>
-                              ${comment.commentContent}
-                            </div>
-                          	<div>
-                          		<a href="c_rewrite_form.do">[댓글 고치기]</a>
-                          		<a href="c_delete.do">[댓글 지우기]</a>
-                          	</div>
-                          </div>
-                    </c:forEach>
-                   </div>
-                   <br>
-                   <c:if test="${not empty sessionScope.id }">
-					<form action="c_write.do" method="post">
-						<div class="comments-insert">
-							<input type="hidden" id="c_content" name="commentContent">
-							<input type="hidden" id="articleNo" name="articleNo" value="${readArticle.articleNo}">
-							<input type="hidden" id="UserId" name="UserId" value="${sessionScope.id}">
-<%-- 							<input type="hidden" name="commentDate" value="commentDate" value="${comment.commentDate}"> --%>
-						   <%--  <input type="hidden" id="userId" name="userId" value="${comment.UserId}">  --%>
-							<p class="pull-right">
-								<button onclick="test()">댓글등록</button>
-							</p>
-							<div class="comments-insert-body" id="commentContent" 
-								contenteditable="true"
-								style="border: 1px solid gold; padding: 10px; height: 50px">
+					<div class="page-header">
+						<h1>
+							<small class="pull-right">${commentList.size()}개의 댓글</small>댓글
+						</h1>
+					</div>
+					<div class="comments-list">
+						<c:forEach var="comment" items="${commentList}">
+							<div class="media">
+								<p class="pull-right">
+									<small>${comment.commentDate }</small>
+								</p>
+								<div class="media-body">
+
+									<h4 class="media-heading user_name">
+										<b>${comment.userId }</b>
+									</h4>
+									${comment.commentContent}
+								</div>
+								<div>
+									 <a href="c_rewrite_form.do?commentNo=${comment.commentNo}">[댓글 고치기]</a>
+									 <a href="c_delete.do?commentNo=${comment.commentNo}">[댓글 지우기]</a>
+									</div>
 							</div>
-						</div>
-					</form>
+						</c:forEach>
+					</div>
+					<br>
+					<c:if test="${not empty sessionScope.id }">
+						<form action="c_write.do" method="post">
+							<div class="comments-insert">
+								<input type="hidden" id="c_content" name="commentContent">
+								<input type="hidden" id="articleNo" name="articleNo"
+									value="${readArticle.articleNo}"> <input type="hidden"
+									id="UserId" name="UserId" value="${sessionScope.id}">
+								<%-- 							<input type="hidden" name="commentDate" value="commentDate" value="${comment.commentDate}"> --%>
+								<%--  <input type="hidden" id="userId" name="userId" value="${comment.UserId}">  --%>
+								<p class="pull-right">
+									<button onclick="test()">댓글등록</button>
+								</p>
+								<div class="comments-insert-body" id="commentContent"
+									contenteditable="true"
+									style="border: 1px solid gold; padding: 10px; height: 50px">
+								</div>
+							</div>
+						</form>
 					</c:if>
-					
+
 					<c:if test="${readArticle.faultyCheck>0}">
 						<div>
 							<h2>불량신고가 있는 상품입니다!</h2>
 							<a href="f_list">[불량신고 보러 가기]</a>
 						</div>
 					</c:if>
-					
+
 				</div>
 			</div>
 		</div>

@@ -70,6 +70,7 @@ public class MainController {
 		List<Faulty> faultyList=fservice.listFaulty(articleNo);
 		for(Comment c:commentList){
 			System.out.println("test3"+c.getCommentContent());
+			System.out.println("commentNo"+c.getCommentNo());
 		}
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("read");
