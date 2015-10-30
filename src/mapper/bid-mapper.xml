@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.BidMapper">
+	<resultMap type="Bid" id="resultBid">
+		<result column="BID_NO" property="bidNo"/>
+		<result column="AUCTION_NO" property="auctionNo"/>
+		<result column="BIDDER" property="bidder"/>
+		<result column="BID_PRICE" property="bidPrice"/>
+		<result column="BID_DATE" property="bidDate"/>
+	</resultMap>
+	
+	<insert id="insertBid" parameterType="Bid" useGeneratedKeys="true" keyColumn="BID_NO" keyProperty="bidNo">
+		INSERT INTO BID(AUCTION_NO, BIDDER, BID_PRICE, BID_DATE) VALUES(#{auctionNo}, #{bidder}, #{bidPrice}, #{bidDate})
+	</insert>
+	
+	<select id="selectBid" parameterType="Integer" resultMap="resultBid">
+		SELECT * FROM BID WHERE BID_NO=#{bidNo}
+	</select>
+	
+	<select id="selectBidList" parameterType="Integer" resultMap="resultBid">
+		SELECT * FROM BID WHERE AUCTION_NO=#{auctionNo} ORDER BY BID_PRICE DESC
+	</select>
+	
+	<select id="selectNewestBid" parameterType="Integer" resultMap="resultBid">
+		SELECT * FROM BID WHERE AUCTION_NO=#{auctionNo} ORDER BY BID_PRICE DESC LIMIT 0, 1
+	</select>
+	
+	<select id="selectNewest10Bid" parameterType="Integer" resultMap="resultBid">
+		SELECT * FROM BID WHERE AUCTION_NO=#{auctionNo} ORDER BY BID_PRICE DESC LIMIT 0, 10
+	</select>
+</mapper>

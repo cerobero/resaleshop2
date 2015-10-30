@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.AuctionMapper">
+	<resultMap type="Auction" id="resultAuction">
+		<result column="AUCTION_NO" property="auctionNo"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="TITLE" property="title"/>
+		<result column="START_PRICE" property="startPrice"/>
+		<result column="CURRENT_PRICE" property="currentPrice"/>
+		<result column="BIN_PRICE" property="binPrice"/>
+		<result column="READ_COUNT" property="readCount"/>
+		<result column="POSTING_DATE" property="postingDate"/>
+		<result column="END_DATE" property="endDate"/>
+		<result column="PHOTO" property="photo"/>
+		<result column="CONTENT" property="content"/>
+		<result column="SOLDOUT" property="soldout"/>
+	</resultMap>
+
+	<insert id="insertAuction" parameterType="Auction"
+		useGeneratedKeys="true" keyColumn="AUCTION_NO" keyProperty="auctionNo">
+		INSERT INTO AUCTION(USER_ID, TITLE, START_PRICE, BIN_PRICE,
+		READ_COUNT, POSTING_DATE, END_DATE, PHOTO, CONTENT, SOLDOUT)
+		VALUES(#{userId}, #{title}, #{startPrice}, #{binPrice}, #{readCount}, #{postingDate},
+		#{endDate}, #{photo}, #{content}, #{soldout})
+	</insert>
+	
+	<update id="updateAuction" parameterType="Auction">
+		UPDATE AUCTION SET TITLE=#{title}, BIN_PRICE=#{binPrice}, END_DATE=#{endDate}, PHOTO=#{photo}, CONTENT=#{content} WHERE AUCTION_NO=#{auctionNo}
+	</update>
+	
+	<delete id="deleteAuction" parameterType="Integer">
+		DELETE FROM AUCTION WHERE AUCTION_NO=#{auctionNo}
+	</delete>
+	
+	<select id="selectAuction" parameterType="Integer" resultMap="resultAuction">
+		SELECT * FROM AUCTION WHERE AUCTION_NO=#{auctionNo}
+	</select>
+	
+	<select id="selectAuctionCount" parameterType="Map" resultType="Integer">
+		SELECT COUNT(*) FROM AUCTION WHERE TITLE LIKE #{search}
+	</select>
+	
+	<select id="selectAuctionList" parameterType="Map" resultMap="resultAuction">
+		SELECT * FROM AUCTION WHERE TITLE LIKE #{search} ORDER BY AUCTION_NO DESC LIMIT #{startIndex}, #{numOfIndex} 
+	</select>
+	
+	<update id="updateAuctionReadCount" parameterType="Integer">
+		UPDATE AUCTION SET READ_COUNT = READ_COUNT + 1 WHERE AUCTION_NO = #{auctionNo}
+	</update>
+	
+	<select id="selectValidAuctionList" resultMap="resultAuction">
+		SELECT * FROM AUCTION WHERE SOLDOUT = 0
+	</select>
+	
+	<update id="updateAuctionExpired" parameterType="Integer">
+		UPDATE AUCTION SET SOLDOUT = 1 WHERE AUCTION_NO = #{auctionNo}
+	</update>
+</mapper>
