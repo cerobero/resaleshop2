@@ -32,6 +32,11 @@ public class ArticleDao
 		return mapper.updateArticle(article);
 	}
 	
+	public int updateWithOutPhoto(Article article)
+	{
+		return mapper.updateArticleWithOutPhoto(article);
+	}
+	
 	public int delete(int articleNo)
 	{
 		return mapper.deleteArticle(articleNo);

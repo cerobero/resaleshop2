@@ -25,6 +25,10 @@
 		UPDATE ARTICLE SET TITLE=#{title}, PRICE=#{price}, PREMIUM=#{premium}, PHOTO=#{photo}, CATEGORY_ID=#{categoryId}, CONTENT=#{content}, SOLDOUT=#{soldout} WHERE ARTICLE_NO=#{articleNo}
 	</update>
 	
+	<update id="updateArticleWithOutPhoto" parameterType="Article">
+		UPDATE ARTICLE SET TITLE=#{title}, PRICE=#{price}, PREMIUM=#{premium}, CATEGORY_ID=#{categoryId}, CONTENT=#{content}, SOLDOUT=#{soldout} WHERE ARTICLE_NO=#{articleNo}
+	</update>
+	
 	<delete id="deleteArticle" parameterType="Integer">
 		DELETE FROM ARTICLE WHERE ARTICLE_NO=#{articleNo}
 	</delete>

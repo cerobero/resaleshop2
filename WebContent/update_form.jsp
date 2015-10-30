@@ -193,7 +193,7 @@
     <br>
     
 	<div class="container">
-	<form class="form-group" action="board" method="POST" enctype="multipart/form-data">
+	<form class="form-group" action="a_update.do" method="POST" enctype="multipart/form-data">
 	  <div class="hero-unit">
 		<div id="legend">
 		  <h1 class="page-header">글수정하기</h1>
@@ -220,8 +220,8 @@
 				<label class="control-label" for="price" style="width: 60px;">가격</label>
 				<input type="text" id="price" class="input-large" name="price" value="${original.price}">
 				
-				<label class="control-label" for="photo">사진등록</label> -->
-				<input type="file" id="item" class="btn btn-default btn-file" name="photo" value="${original.photo}"> 
+				<label class="control-label" for="photo">사진등록</label> 
+				<input type="file" id="item" class="btn btn-default btn-file" name="myfile" value="${original.photo}"> 
 			</div>
 		</div>
 		
@@ -237,8 +237,8 @@
 			
 			<div class="controls">
 				<label class="control-label">프리미엄</label>
-				<input type="radio" value="1" name="premiume">&nbsp;사용&nbsp;
-				<input type="radio" value="0" name="premiume">&nbsp;사용안함&nbsp;
+				<input type="radio" value="1" name="premium">&nbsp;사용&nbsp;
+				<input type="radio" value="0" name="premium">&nbsp;사용안함&nbsp;
 			</div>
 			
 			<div class="controls">
@@ -305,7 +305,7 @@
 	      <input type="hidden" id="content" name="content">
 	      <input type="hidden" name="articleNo" value="${original.articleNo}">
 	      <input type="hidden" id="type" name="type" value="a_update.do">
-	      <button class="btn btn-success" id="update.do" >수정하기</button>
+	      <button class="btn btn-success" id="update" >수정하기</button>
 	      <button class="btn btn-success" id="cancel" onclick="cancelUpdate()">취소</button>
 	      </div>
 	    </div>

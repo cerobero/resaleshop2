@@ -25,4 +25,5 @@ public interface ArticleMapper
 	public List<Article> selectMainArticleListAll(Map<String, Integer> map);
 	public List<Article> selectMainArticleListHot(Map<String, Integer> map);
 	public List<Article> selectMainArticleListPremium(Map<String, Integer> map);
+	public int updateArticleWithOutPhoto(Article article);
 }

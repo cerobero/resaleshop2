@@ -10,20 +10,17 @@ import vo.Article;
 import vo.ArticlePage;
 
 @Component
-public class ArticleService
-{
+public class ArticleService {
 	private ArticleDao dao;
 	public static final int ARTICLE_PER_PAGE = 8;
 	public static final int VIEW_PAGES = 10;
-	
+
 	@Autowired
-	public void setDao(ArticleDao dao)
-	{
+	public void setDao(ArticleDao dao) {
 		this.dao = dao;
 	}
-	
-	public ArticlePage getArticlePage(String search, int categoryId, int selectPage)
-	{
+
+	public ArticlePage getArticlePage(String search, int categoryId, int selectPage) {
 		List<Article> articleList = null;
 		int articleCount = 0;
 		int pageArticleCount = 0;
@@ -34,30 +31,27 @@ public class ArticleService
 		search = search == null ? "" : search;
 		System.out.println("°Ë»ö : " + search);
 
-		articleCount = categoryId == 0 ? dao.selectCountAll(search)
-		        : dao.selectCountCategory(search, categoryId);
+		articleCount = categoryId == 0 ? dao.selectCountAll(search) : dao.selectCountCategory(search, categoryId);
 		currentPage = selectPage > 0 ? selectPage : 1;
 		totalPage = articleCount % ARTICLE_PER_PAGE != 0 ? articleCount / ARTICLE_PER_PAGE + 1
-		        : articleCount / ARTICLE_PER_PAGE;
+				: articleCount / ARTICLE_PER_PAGE;
 		startPage = currentPage > VIEW_PAGES / 2 ? currentPage - VIEW_PAGES / 2 + 1 : 1;
 		endPage = totalPage > startPage + VIEW_PAGES - 1 ? startPage + VIEW_PAGES - 1 : totalPage;
 		startPage = totalPage == endPage && endPage > ARTICLE_PER_PAGE && startPage > ARTICLE_PER_PAGE
-		        ? endPage - ARTICLE_PER_PAGE + 1 : startPage;
+				? endPage - ARTICLE_PER_PAGE + 1 : startPage;
 		articleList = categoryId == 0
-		        ? dao.selectListAll(search, (currentPage - 1) * ARTICLE_PER_PAGE, ARTICLE_PER_PAGE)
-		        : dao.selectListCategory(search, categoryId, (currentPage - 1) * ARTICLE_PER_PAGE,
-		                ARTICLE_PER_PAGE);
+				? dao.selectListAll(search, (currentPage - 1) * ARTICLE_PER_PAGE, ARTICLE_PER_PAGE)
+				: dao.selectListCategory(search, categoryId, (currentPage - 1) * ARTICLE_PER_PAGE, ARTICLE_PER_PAGE);
 		pageArticleCount = articleList.size();
 		System.out.println("pageArticleCount = " + pageArticleCount);
 		System.out.println(
-		        String.format("startPage = %d, endPage = %d, currentPage = %d, selectPage = %d, totalPage = %d",
-		                startPage, endPage, currentPage, selectPage, totalPage));
+				String.format("startPage = %d, endPage = %d, currentPage = %d, selectPage = %d, totalPage = %d",
+						startPage, endPage, currentPage, selectPage, totalPage));
 
 		return new ArticlePage(articleList, articleCount, pageArticleCount, currentPage, startPage, endPage);
 	}
-	
-	public ArticlePage getArticlePageHot(String search, int selectPage)
-	{
+
+	public ArticlePage getArticlePageHot(String search, int selectPage) {
 		List<Article> articleList = null;
 		int articleCount = 0;
 		int pageArticleCount = 0;
@@ -70,19 +64,18 @@ public class ArticleService
 		articleCount = dao.selectCountHot(search);
 		currentPage = selectPage > 0 ? selectPage : 1;
 		totalPage = articleCount % ARTICLE_PER_PAGE != 0 ? articleCount / ARTICLE_PER_PAGE + 1
-		        : articleCount / ARTICLE_PER_PAGE;
+				: articleCount / ARTICLE_PER_PAGE;
 		startPage = currentPage > VIEW_PAGES / 2 ? currentPage - VIEW_PAGES / 2 + 1 : 1;
 		endPage = totalPage > startPage + VIEW_PAGES - 1 ? startPage + VIEW_PAGES - 1 : totalPage;
 		startPage = totalPage == endPage && endPage > ARTICLE_PER_PAGE && startPage > ARTICLE_PER_PAGE
-		        ? endPage - ARTICLE_PER_PAGE + 1 : startPage;
+				? endPage - ARTICLE_PER_PAGE + 1 : startPage;
 		articleList = dao.selectListHot(search, (currentPage - 1) * ARTICLE_PER_PAGE, ARTICLE_PER_PAGE);
 		pageArticleCount = articleList.size();
 
 		return new ArticlePage(articleList, articleCount, pageArticleCount, currentPage, startPage, endPage);
 	}
 
-	public ArticlePage getArticlePagePremium(String search, int selectPage)
-	{
+	public ArticlePage getArticlePagePremium(String search, int selectPage) {
 		List<Article> articleList = null;
 		int articleCount = 0;
 		int pageArticleCount = 0;
@@ -95,34 +88,42 @@ public class ArticleService
 		articleCount = dao.selectCountPremium(search);
 		currentPage = selectPage > 0 ? selectPage : 1;
 		totalPage = articleCount % ARTICLE_PER_PAGE != 0 ? articleCount / ARTICLE_PER_PAGE + 1
-		        : articleCount / ARTICLE_PER_PAGE;
+				: articleCount / ARTICLE_PER_PAGE;
 		startPage = currentPage > VIEW_PAGES / 2 ? currentPage - VIEW_PAGES / 2 + 1 : 1;
 		endPage = totalPage > startPage + VIEW_PAGES - 1 ? startPage + VIEW_PAGES - 1 : totalPage;
 		startPage = totalPage == endPage && endPage > ARTICLE_PER_PAGE && startPage > ARTICLE_PER_PAGE
-		        ? endPage - ARTICLE_PER_PAGE + 1 : startPage;
+				? endPage - ARTICLE_PER_PAGE + 1 : startPage;
 		articleList = dao.selectListPremium(search, (currentPage - 1) * ARTICLE_PER_PAGE, ARTICLE_PER_PAGE);
 		pageArticleCount = articleList.size();
 
 		return new ArticlePage(articleList, articleCount, pageArticleCount, currentPage, startPage, endPage);
 	}
-	
-	public boolean updateArticle(Article article){
-		if(dao.update(article)>0){
+
+	public boolean updateArticle(Article article) {
+		if (article.getPhoto() != null) {
+			if (dao.update(article) > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			if (dao.updateWithOutPhoto(article) > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
+
+	public boolean deleteArticle(int articleNo) {
+		if (dao.delete(articleNo) > 0) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
-	
-	public boolean deleteArticle(int articleNo){
-		if(dao.delete(articleNo)>0){
-			return true;
-		}else{
-			return false;
-		}
-	}
-	
-	public Article readArticle(int articleNo){
+
+	public Article readArticle(int articleNo) {
 		return dao.select(articleNo);
 	}
 

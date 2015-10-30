@@ -20,7 +20,7 @@ public class ReadController {
 	
 	@RequestMapping(value="a_update_form.do")
 	public ModelAndView updateForm(int articleNo){
-		System.out.println("¾÷µ¥ÀÌÆ® ¾ÆÆ¼Å¬³Ñ¹ö : "+articleNo);
+		System.out.println("ì—…ë°ì´íŠ¸ ì•„í‹°í´ë„˜ë²„ : "+articleNo);
 		Article original=aservice.readArticle(articleNo);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("original",original);
