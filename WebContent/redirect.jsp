@@ -6,13 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>redirect page</title>
 <script>
-	var errMsg = "${requestScope.errMsg }";
-	
-	if (errMsg.length > 0) {
-		alert(errMsg);
-	}
-
-	location.href = "${requestScope.location }";
+	location.href = "index.do";
 </script>
 </head>
 </html>
