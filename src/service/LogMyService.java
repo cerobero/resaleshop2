@@ -26,20 +26,12 @@ public class LogMyService {
 		this.dao = dao;
 	}
 
-	public int isLogin(User user) {
+	public User isLogin(User user) {
 
-		if (dao.getUser(user) != null) {
-			String gpw = dao.getUser(user).getUserPw();
-			if (user.getUserPw().equals(gpw)) {
-				return 1;
-			} else {
-				return 0;
-			}
-		} else {
-			return -1;
-		}
+		User lgUser = dao.getUser(user);
+		return lgUser;
 	}
-
+	
 	public List<Article> myPage(String userId) {
 		return dao.itemStatus(userId);
 	}
