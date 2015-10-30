@@ -188,8 +188,8 @@ $('#target').submit(function() {
 
 			<div class="controls">
 				<label class="control-label">프리미엄</label>
-					<input type="radio" value="1" name="premiume">&nbsp;사용&nbsp;
-					<input type="radio" value="0" name="premiume" checked>&nbsp;사용안함&nbsp;
+					<input type="radio" value="1" name="premium">&nbsp;사용&nbsp;
+					<input type="radio" value="0" name="premium" checked>&nbsp;사용안함&nbsp;
 			</div>
 		</div>
 
