@@ -64,7 +64,7 @@
 
 <script>
 
-	window.onload=function timeck() {
+	  window.onload=function timeck() {
 // 		function timeck(){
 		var startdate = "2015102822";
 		var enddate = "2015110224";
@@ -290,7 +290,7 @@ input[type=file] {
 
     <tr>
         <td width="97">
-				<button type='button'  id="btn-tc" class="btn btn-primary" disabled="disabled" onClick="location.href='gongu.do'">구매</button>
+				<button type='button'  id="btn-tc" class="btn btn-primary btn-lg" disabled="disabled" onClick="location.href='gongu.do'">구매</button>
 		</td>
 		<td>구매 버튼은 공구 시작시간에 활성화 되어, 종료시간에 비활성화 됩니다</td>
 		
@@ -306,7 +306,43 @@ input[type=file] {
 <%-- <td>${winner.user_id}</td> --%>
 <%--  	</c:forEach> --%>
 
-<font color=red>*</font> 특가 재판매 관련<br>
+<!-- <a href="winner.do" onClick="return show_hide_abox(this,800,9095,'10px solid')">⊙ 신청자 기록 보기</a> -->
+
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">신청자 기록보기</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">신청자 및 대기자 리스트</h4>
+        </div>
+        <div class="modal-body">
+        <table class="table table-striped table-hover">
+          	<c:forEach var="winner" items="${winnerList}">
+          	<tr>
+          	<td>구매순서</td>
+          	<td>ID</td>
+          	</tr>
+				<tr>
+				<td>${winner.order_no}</td>
+				<td>${winner.user_id}</td>
+ 			</c:forEach>
+ 		</table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+	<br>
+<font color=red>*</font>특가 재판매 관련<br>
 <font color=red>*수령지 미기재 신청 안됨 / 자진취소자 3개월 / 가입제한 3일</font>
 </td>
 </tr>

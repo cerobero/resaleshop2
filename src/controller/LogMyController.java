@@ -72,7 +72,7 @@ public class LogMyController {
 		ModelAndView mv = new ModelAndView();
 		String userId = (String) session.getAttribute("id");
 		List<Article> articleList = service.myPage(userId);
-		mv.addObject(articleList);
+		mv.addObject("articleList", articleList);
 		mv.setViewName("mypage");
 		return mv;
 	}
@@ -103,7 +103,8 @@ public class LogMyController {
 	public ModelAndView winnerList() {
 		ModelAndView mv = new ModelAndView();
 		List<JointPurchase> winnerList = service.winnerList();
-		mv.addObject(winnerList);
+		mv.addObject("winnerList", winnerList);
+		System.out.println(winnerList);
 		mv.setViewName("gonguView");
 		return mv;
 	}
